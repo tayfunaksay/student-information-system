@@ -1,5 +1,7 @@
 package com.studentinformationsystem.registrarservice.dto.address;
 
+import com.studentinformationsystem.registrarservice.model.AddressType;
+
 public class CreateAddressRequest {
 
     private long detailId;
@@ -7,6 +9,7 @@ public class CreateAddressRequest {
     private long districtId;
     private String postCode;
     private String street;
+    private AddressType addressType;
 
     public long getDetailId() {
         return detailId;
@@ -26,5 +29,9 @@ public class CreateAddressRequest {
 
     public String getStreet() {
         return street;
+    }
+
+    public AddressType getAddressType() {
+        return addressType;
     }
 }

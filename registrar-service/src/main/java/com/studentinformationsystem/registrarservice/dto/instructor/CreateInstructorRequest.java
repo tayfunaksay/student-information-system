@@ -3,14 +3,14 @@ package com.studentinformationsystem.registrarservice.dto.instructor;
 import com.studentinformationsystem.registrarservice.dto.detail.CreateDetailRequest;
 
 public class CreateInstructorRequest {
-    private String departmentId;
+    private long departmentId;
     private String firstName;
     private String lastName;
     private String educationalEmail;
     private CreateDetailRequest detail;
     private boolean isAvailableForOtherDepartment;
 
-    public String getDepartmentId() {
+    public long getDepartmentId() {
         return departmentId;
     }
 

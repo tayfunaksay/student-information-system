@@ -7,6 +7,7 @@ public class UpdateCourseRequest {
     private String code;
     private double courseCredit;
     private short courseAKTS;
+    private long departmentId;
 
     public String getOriginalName() {
         return originalName;
@@ -26,5 +27,9 @@ public class UpdateCourseRequest {
 
     public short getCourseAKTS() {
         return courseAKTS;
+    }
+
+    public long getDepartmentId() {
+        return departmentId;
     }
 }

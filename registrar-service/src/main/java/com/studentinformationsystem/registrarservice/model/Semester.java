@@ -1,10 +1,11 @@
 package com.studentinformationsystem.registrarservice.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 import java.util.Date;
 import java.util.Objects;
-
+@Builder
 @Entity
 @Table(name = "semesters")
 public class Semester {

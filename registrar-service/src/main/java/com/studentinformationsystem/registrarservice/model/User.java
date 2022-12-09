@@ -9,24 +9,17 @@ import lombok.Builder;
 public class User  {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private long id;
-
-
-    private long roleId;
-    private String password;
+    private String firstPassword;
     private String educationalEmail;
-
-
 
     public User() {
     }
 
-    public User(Long id, long roleId, String password, String educationalEmail) {
+    public User(Long id, String firstPassword, String educationalEmail) {
         this.id = id;
-        this.roleId = roleId;
-        this.password = password;
+        this.firstPassword = firstPassword;
         this.educationalEmail = educationalEmail;
     }
 
@@ -35,12 +28,8 @@ public class User  {
         return id;
     }
 
-    public long getRoleId() {
-        return roleId;
-    }
-
-    public String getPassword() {
-        return password;
+    public String getFirstPassword() {
+        return firstPassword;
     }
 
     public String getEducationalEmail() {

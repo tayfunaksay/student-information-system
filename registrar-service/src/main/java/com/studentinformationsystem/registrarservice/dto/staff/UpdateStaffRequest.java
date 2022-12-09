@@ -1,16 +1,16 @@
 package com.studentinformationsystem.registrarservice.dto.staff;
 
-import com.studentinformationsystem.registrarservice.dto.detail.UpdateDetailRequest;
+import com.studentinformationsystem.registrarservice.dto.detail.CreateDetailRequest;
 
 public class UpdateStaffRequest {
 
-    private String departmentId;
+    private long departmentId;
     private String firstName;
     private String lastName;
     private String educationalEmail;
-    private UpdateDetailRequest detail;
+    private CreateDetailRequest detail;
 
-    public String getDepartmentId() {
+    public long getDepartmentId() {
         return departmentId;
     }
 
@@ -26,7 +26,7 @@ public class UpdateStaffRequest {
         return educationalEmail;
     }
 
-    public UpdateDetailRequest getDetail() {
+    public CreateDetailRequest getDetail() {
         return detail;
     }
 }

@@ -1,10 +1,11 @@
 package com.studentinformationsystem.registrarservice.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 import java.util.List;
 import java.util.Objects;
-
+@Builder
 @Entity
 @Table(name = "details")
 public class Detail {
@@ -24,7 +25,7 @@ public class Detail {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "detail")
     private Staff staff;
 
-    @OneToMany(mappedBy = "detail", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "detail", cascade = CascadeType.ALL)
     private List<Address> addresses;
 
     private String nationalIdentity;
@@ -34,7 +35,13 @@ public class Detail {
     public Detail() {
     }
 
-    public Detail(Long id, Student student, Instructor instructor, Staff staff, List<Address> addresses, String nationalIdentity, String gender) {
+    public Detail(Long id,
+                  Student student,
+                  Instructor instructor,
+                  Staff staff,
+                  List<Address> addresses,
+                  String nationalIdentity,
+                  String gender) {
         this.id = id;
         this.student = student;
         this.instructor = instructor;
