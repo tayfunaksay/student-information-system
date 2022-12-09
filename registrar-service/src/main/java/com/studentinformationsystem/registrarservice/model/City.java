@@ -38,7 +38,7 @@ public class City {
         this.plateNumber = plateNumber;
     }
 
-    public long getId() {
+    public short getId() {
         return id;
     }
 

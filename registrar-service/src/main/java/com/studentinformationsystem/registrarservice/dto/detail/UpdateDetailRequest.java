@@ -1,16 +1,16 @@
 package com.studentinformationsystem.registrarservice.dto.detail;
 
-import com.studentinformationsystem.registrarservice.dto.address.CreateAddressRequest;
+import com.studentinformationsystem.registrarservice.dto.address.UpdateAddressRequest;
 
 import java.util.List;
 
 public class UpdateDetailRequest {
 
-    private List<CreateAddressRequest> addresses;
+    private List<UpdateAddressRequest> addresses;
     private String nationalIdentity;
     private String gender;
 
-    public List<CreateAddressRequest> getAddresses() {
+    public List<UpdateAddressRequest> getAddresses() {
         return addresses;
     }
 

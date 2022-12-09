@@ -6,6 +6,10 @@ import java.util.Date;
 
 @Builder
 public class SemesterDto {
+    private String name;
+    private Date startDate;
+    private Date finishDate;
+
     public SemesterDto() {
     }
 
@@ -14,9 +18,4 @@ public class SemesterDto {
         this.startDate = startDate;
         this.finishDate = finishDate;
     }
-
-    private String name;
-    private Date startDate;
-    private Date finishDate;
-
 }

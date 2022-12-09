@@ -5,6 +5,7 @@ public class CreateUserRequest {
     private long roleId;
     private String password;
     private String educationalEmail;
+    private long staffIdWhoSendRequest;
 
     public long getRoleId() {
         return roleId;
@@ -16,5 +17,9 @@ public class CreateUserRequest {
 
     public String getEducationalEmail() {
         return educationalEmail;
+    }
+
+    public long getStaffIdWhoSendRequest() {
+        return staffIdWhoSendRequest;
     }
 }

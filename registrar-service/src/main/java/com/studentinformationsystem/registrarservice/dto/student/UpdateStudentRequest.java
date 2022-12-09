@@ -4,7 +4,7 @@ import com.studentinformationsystem.registrarservice.dto.detail.UpdateDetailRequ
 
 public class UpdateStudentRequest {
     private long studentNumber;
-    private String departmentId;
+    private long departmentId;
     private String firstName;
     private String lastName;
     private String educationalEmail;
@@ -15,7 +15,7 @@ public class UpdateStudentRequest {
         return studentNumber;
     }
 
-    public String getDepartmentId() {
+    public long getDepartmentId() {
         return departmentId;
     }
 
