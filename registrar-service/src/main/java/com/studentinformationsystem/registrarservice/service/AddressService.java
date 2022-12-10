@@ -9,9 +9,9 @@ import java.util.List;
 public interface AddressService {
 
     AddressDto create (CreateAddressRequest request);
-    AddressDto delete (long addressId);
+    void delete (String addressId);
     AddressDto update (UpdateAddressRequest request);
     List<AddressDto> getAll();
-    AddressDto getById(long addressId);
+    AddressDto getById(String addressId);
 
 }

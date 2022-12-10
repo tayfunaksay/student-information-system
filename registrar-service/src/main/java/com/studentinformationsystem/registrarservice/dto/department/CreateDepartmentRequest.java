@@ -1,12 +1,12 @@
 package com.studentinformationsystem.registrarservice.dto.department;
 
 public class CreateDepartmentRequest {
-    private long facultyId;
+    private String facultyId;
     private String name;
     private String code;
 
 
-    public long getFacultyId() {
+    public String getFacultyId() {
         return facultyId;
     }
 

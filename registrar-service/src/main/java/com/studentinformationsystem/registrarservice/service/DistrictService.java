@@ -9,8 +9,8 @@ import java.util.List;
 public interface DistrictService {
     DistrictDto create (CreateDistrictRequest request);
 
-    //DistrictDto delete (long districtId);
+    //DistrictDto delete (String districtId);
     DistrictDto update (UpdateDistrictRequest request);
     List<DistrictDto> getAll();
-    DistrictDto getById(long districtId);
+    DistrictDto getById(String districtId);
 }

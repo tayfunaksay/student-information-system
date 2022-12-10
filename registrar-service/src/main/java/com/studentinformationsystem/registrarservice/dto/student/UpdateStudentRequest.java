@@ -3,19 +3,24 @@ package com.studentinformationsystem.registrarservice.dto.student;
 import com.studentinformationsystem.registrarservice.dto.detail.UpdateDetailRequest;
 
 public class UpdateStudentRequest {
+    private String id;
     private long studentNumber;
-    private long departmentId;
+    private String departmentId;
     private String firstName;
     private String lastName;
     private String educationalEmail;
     private UpdateDetailRequest detail;
     private String emailAddress;
 
+    public String getId() {
+        return id;
+    }
+
     public long getStudentNumber() {
         return studentNumber;
     }
 
-    public long getDepartmentId() {
+    public String getDepartmentId() {
         return departmentId;
     }
 

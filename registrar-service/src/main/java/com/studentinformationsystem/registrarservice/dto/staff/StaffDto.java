@@ -7,6 +7,7 @@ import lombok.Builder;
 @Builder
 public class StaffDto {
 
+    private String id;
     private DepartmentDto department;
     private String firstName;
     private String lastName;
@@ -17,7 +18,8 @@ public class StaffDto {
     public StaffDto() {
     }
 
-    public StaffDto(DepartmentDto department, String firstName, String lastName, String educationalEmail, DetailDto detail) {
+    public StaffDto(String id, DepartmentDto department, String firstName, String lastName, String educationalEmail, DetailDto detail) {
+        this.id=id;
         this.department = department;
         this.firstName = firstName;
         this.lastName = lastName;

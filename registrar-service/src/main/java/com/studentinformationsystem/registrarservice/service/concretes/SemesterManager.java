@@ -16,7 +16,7 @@ public class SemesterManager implements SemesterService {
     }
 
     @Override
-    public SemesterDto delete(long semesterId) {
+    public SemesterDto delete(String semesterId) {
         return null;
     }
 
@@ -31,7 +31,7 @@ public class SemesterManager implements SemesterService {
     }
 
     @Override
-    public SemesterDto getById(long semesterId) {
+    public SemesterDto getById(String semesterId) {
         return null;
     }
 }

@@ -3,13 +3,13 @@ package com.studentinformationsystem.registrarservice.dto.district;
 public class CreateDistrictRequest {
 
     private String name;
-    private short cityId;
+    private String cityId;
 
     public String getName() {
         return name;
     }
 
-    public short getCityId() {
+    public String getCityId() {
         return cityId;
     }
 }

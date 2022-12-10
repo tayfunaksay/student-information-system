@@ -23,6 +23,7 @@ public class DepartmentConverter implements DepartmentMapper {
     @Override
     public DepartmentDto toDepartmentDto(Department from) {
         return DepartmentDto.builder()
+                .id(from.getId())
                 .name(from.getName())
                 .code(from.getCode())
                 .facultyDto(facultyMapper.toFacultyDto(from.getFaculty()))
@@ -50,6 +51,7 @@ public class DepartmentConverter implements DepartmentMapper {
     @Override
     public Department toDepartment(UpdateDepartmentRequest request) {
         return Department.builder()
+                .id(request.getId())
                 .name(request.getName())
                 .code(request.getCode())
                 .faculty(Faculty.builder()

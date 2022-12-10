@@ -15,7 +15,7 @@ public class DepartmentManager implements DepartmentService{
     }
 
     @Override
-    public DepartmentDto delete(long departmentId) {
+    public DepartmentDto delete(String departmentId) {
         return null;
     }
 
@@ -30,7 +30,7 @@ public class DepartmentManager implements DepartmentService{
     }
 
     @Override
-    public DepartmentDto getById(long departmentId) {
+    public DepartmentDto getById(String departmentId) {
         return null;
     }
 }

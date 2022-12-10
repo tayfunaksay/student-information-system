@@ -3,17 +3,23 @@ package com.studentinformationsystem.registrarservice.dto.address;
 import com.studentinformationsystem.registrarservice.model.AddressType;
 
 public class UpdateAddressRequest {
-    private short cityId;
-    private long districtId;
+
+    private String id;
+    private String cityId;
+    private String districtId;
     private String postCode;
     private String street;
     private AddressType addressType;
 
-    public short getCityId() {
+
+    public String getId() {
+        return id;
+    }
+    public String getCityId() {
         return cityId;
     }
 
-    public long getDistrictId() {
+    public String getDistrictId() {
         return districtId;
     }
 

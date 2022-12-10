@@ -6,6 +6,7 @@ import lombok.Builder;
 
 @Builder
 public class InstructorDto {
+    private String id;
     private DepartmentDto department;
     private String firstName;
     private String lastName;
@@ -19,7 +20,8 @@ public class InstructorDto {
 
     }
 
-    public InstructorDto(DepartmentDto department, String firstName, String lastName, String educationalEmail, DetailDto detail, boolean isAvailableForOtherDepartment) {
+    public InstructorDto(String id, DepartmentDto department, String firstName, String lastName, String educationalEmail, DetailDto detail, boolean isAvailableForOtherDepartment) {
+        this.id=id;
         this.department = department;
         this.firstName = firstName;
         this.lastName = lastName;

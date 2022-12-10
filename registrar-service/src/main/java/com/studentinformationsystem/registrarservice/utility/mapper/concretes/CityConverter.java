@@ -15,6 +15,7 @@ public class CityConverter implements CityMapper {
     @Override
     public CityDto toCityDto(City from) {
         return CityDto.builder()
+                .id(from.getId())
                 .name(from.getName())
                 .plateNumber(from.getPlateNumber())
                 .build();
@@ -38,6 +39,7 @@ public class CityConverter implements CityMapper {
     @Override
     public City toCity(UpdateCityRequest request) {
         return City.builder()
+                .id(request.getId())
                 .name(request.getName())
                 .plateNumber(request.getPlateNumber())
                 .build();

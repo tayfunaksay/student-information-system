@@ -7,6 +7,7 @@ import java.util.List;
 
 @Builder
 public class DetailDto {
+    private String id;
     private List<AddressDto> addresses;
     private String nationalIdentity;
     private String gender;
@@ -14,7 +15,8 @@ public class DetailDto {
     public DetailDto() {
     }
 
-    public DetailDto(List<AddressDto> addresses, String nationalIdentity, String gender) {
+    public DetailDto(String id,List<AddressDto> addresses, String nationalIdentity, String gender) {
+        this.id=id;
         this.addresses = addresses;
         this.nationalIdentity = nationalIdentity;
         this.gender = gender;

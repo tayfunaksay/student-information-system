@@ -2,6 +2,7 @@ package com.studentinformationsystem.registrarservice.model;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Objects;
 
@@ -11,9 +12,9 @@ import java.util.Objects;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id", nullable = false)
@@ -33,7 +34,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(Long id, Department department, Detail detail, long studentNumber, String firstName, String lastName, String educationalEmail, String emailAddress) {
+    public Student(String id, Department department, Detail detail, long studentNumber, String firstName, String lastName, String educationalEmail, String emailAddress) {
         this.id = id;
         this.department = department;
         this.detail = detail;
@@ -46,12 +47,8 @@ public class Student {
 
 
 
-    public Long getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Department getDepartment() {

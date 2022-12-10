@@ -15,7 +15,7 @@ public class InstructorManger implements InstructorService {
     }
 
     @Override
-    public InstructorDto delete(long instructorId) {
+    public InstructorDto delete(String instructorId) {
         return null;
     }
 
@@ -30,7 +30,7 @@ public class InstructorManger implements InstructorService {
     }
 
     @Override
-    public InstructorDto getById(long instructorId) {
+    public InstructorDto getById(String instructorId) {
         return null;
     }
 }

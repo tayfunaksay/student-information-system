@@ -3,15 +3,16 @@ package com.studentinformationsystem.registrarservice.model;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import org.hibernate.annotations.GenericGenerator;
 
 @Builder
 @Entity
 @Table(name = "addresses")
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "detail_id", nullable = false)
@@ -35,7 +36,7 @@ public class Address {
     public Address() {
     }
 
-    public Address(long id, Detail detail, City city, District district, AddressType addressType, String postCode, String street) {
+    public Address(String id, Detail detail, City city, District district, AddressType addressType, String postCode, String street) {
         this.id = id;
         this.detail = detail;
         this.city = city;
@@ -46,7 +47,7 @@ public class Address {
     }
 
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 

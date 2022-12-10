@@ -2,12 +2,17 @@ package com.studentinformationsystem.registrarservice.dto.course;
 
 public class UpdateCourseRequest {
 
+    private String id;
     private String originalName;
     private String turkishName;
     private String code;
     private double courseCredit;
     private short courseAKTS;
-    private long departmentId;
+    private String departmentId;
+
+    public String getId() {
+        return id;
+    }
 
     public String getOriginalName() {
         return originalName;
@@ -29,7 +34,7 @@ public class UpdateCourseRequest {
         return courseAKTS;
     }
 
-    public long getDepartmentId() {
+    public String getDepartmentId() {
         return departmentId;
     }
 }

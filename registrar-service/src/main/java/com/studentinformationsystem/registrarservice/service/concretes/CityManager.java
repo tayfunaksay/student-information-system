@@ -26,7 +26,7 @@ public class CityManager implements CityService {
     }
 
     @Override
-    public CityDto getById(long cityId) {
+    public CityDto getById(String cityId) {
         return null;
     }
 }

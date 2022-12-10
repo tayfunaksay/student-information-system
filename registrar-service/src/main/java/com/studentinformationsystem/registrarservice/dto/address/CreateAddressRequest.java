@@ -4,22 +4,22 @@ import com.studentinformationsystem.registrarservice.model.AddressType;
 
 public class CreateAddressRequest {
 
-    private long detailId;
-    private short cityId;
-    private long districtId;
+    private String detailId;
+    private String cityId;
+    private String districtId;
     private String postCode;
     private String street;
     private AddressType addressType;
 
-    public long getDetailId() {
+    public String getDetailId() {
         return detailId;
     }
 
-    public short getCityId() {
+    public String getCityId() {
         return cityId;
     }
 
-    public long getDistrictId() {
+    public String getDistrictId() {
         return districtId;
     }
 

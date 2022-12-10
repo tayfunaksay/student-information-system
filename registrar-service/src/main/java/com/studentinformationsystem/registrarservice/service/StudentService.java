@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface StudentService {
     StudentDto create (CreateStudentRequest request);
-    StudentDto delete (long studentId);
+    StudentDto delete (String studentId);
     StudentDto update (UpdateStudentRequest request);
     List<StudentDto> getAll();
-    StudentDto getById(long studentId);
+    StudentDto getById(String studentId);
 }

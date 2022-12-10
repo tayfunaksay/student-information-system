@@ -26,7 +26,7 @@ public class DistrictManager implements DistrictService {
     }
 
     @Override
-    public DistrictDto getById(long districtId) {
+    public DistrictDto getById(String districtId) {
         return null;
     }
 }

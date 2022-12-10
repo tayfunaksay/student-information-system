@@ -26,6 +26,7 @@ public class StudentConverter implements StudentMapper {
     @Override
     public StudentDto toStudentDto(Student from) {
         return StudentDto.builder()
+                .id(from.getId())
                 .firstName(from.getFirstName())
                 .lastName(from.getLastName())
                 .studentNumber(from.getStudentNumber())
@@ -61,6 +62,7 @@ public class StudentConverter implements StudentMapper {
     @Override
     public Student toStudent(UpdateStudentRequest request) {
         return Student.builder()
+                .id(request.getId())
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .studentNumber(request.getStudentNumber())
