@@ -27,6 +27,7 @@ public class InstructorConverter implements InstructorMapper {
     @Override
     public InstructorDto toInstructorDto(Instructor from) {
         return InstructorDto.builder()
+                .id(from.getId())
                 .firstName(from.getFirstName())
                 .lastName(from.getLastName())
                 .educationalEmail(from.getEducationalEmail())
@@ -60,6 +61,7 @@ public class InstructorConverter implements InstructorMapper {
     @Override
     public Instructor toInstructor(UpdateInstructorRequest request) {
         return Instructor.builder()
+                .id(request.getId())
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .educationalEmail(request.getEducationalEmail())

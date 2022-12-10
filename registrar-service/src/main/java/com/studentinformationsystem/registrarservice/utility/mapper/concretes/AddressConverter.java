@@ -28,6 +28,7 @@ public class AddressConverter implements AddressMapper {
     @Override
     public AddressDto toAddressDto(Address from) {
         return AddressDto.builder()
+                .id(from.getId())
                 .cityDto(cityMapper.toCityDto(from.getCity()))
                 .districtDto(districtMapper.toDistrictDto(from.getDistrict()))
                 .postCode(from.getPostCode())
@@ -63,6 +64,7 @@ public class AddressConverter implements AddressMapper {
     @Override
     public Address toAddress(UpdateAddressRequest request) {
         return Address.builder()
+                .id(request.getId())
                 .city(City.builder()
                         .id(request.getCityId())
                         .build())

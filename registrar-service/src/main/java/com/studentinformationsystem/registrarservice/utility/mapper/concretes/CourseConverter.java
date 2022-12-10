@@ -23,6 +23,7 @@ public class CourseConverter implements CourseMapper {
     @Override
     public CourseDto toCourseDto(Course from) {
         return CourseDto.builder()
+                .id(from.getId())
                 .originalName(from.getOriginalName())
                 .turkishName(from.getTurkishName())
                 .code(from.getCode())
@@ -56,6 +57,7 @@ public class CourseConverter implements CourseMapper {
     @Override
     public Course toCourse(UpdateCourseRequest request) {
         return Course.builder()
+                .id(request.getId())
                 .originalName(request.getOriginalName())
                 .turkishName(request.getTurkishName())
                 .code(request.getCode())

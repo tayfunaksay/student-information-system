@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface SemesterService {
     SemesterDto create (CreateSemesterRequest request);
-    SemesterDto delete (long semesterId);
+    SemesterDto delete (String semesterId);
     SemesterDto update (UpdateSemesterRequest request);
     List<SemesterDto> getAll();
-    SemesterDto getById(long semesterId);
+    SemesterDto getById(String semesterId);
 }

@@ -16,7 +16,7 @@ public class StaffManager implements StaffService {
     }
 
     @Override
-    public StaffDto delete(long staffId) {
+    public StaffDto delete(String staffId) {
         return null;
     }
 
@@ -31,7 +31,7 @@ public class StaffManager implements StaffService {
     }
 
     @Override
-    public StaffDto getById(long staffId) {
+    public StaffDto getById(String staffId) {
         return null;
     }
 }

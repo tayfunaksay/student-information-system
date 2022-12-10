@@ -1,13 +1,16 @@
 package com.studentinformationsystem.registrarservice.dto.department;
 
 public class UpdateDepartmentRequest {
-
-    private long facultyId;
+    private String id;
+    private String facultyId;
     private String name;
     private String code;
 
+    public String getId() {
+        return id;
+    }
 
-    public long getFacultyId() {
+    public String getFacultyId() {
         return facultyId;
     }
 

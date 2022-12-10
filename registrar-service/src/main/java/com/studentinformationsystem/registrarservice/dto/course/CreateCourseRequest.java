@@ -7,7 +7,7 @@ public class CreateCourseRequest {
     private String code;
     private double courseCredit;
     private short courseAKTS;
-    private long departmentId;
+    private String departmentId;
 
     public String getOriginalName() {
         return originalName;
@@ -29,7 +29,7 @@ public class CreateCourseRequest {
         return courseAKTS;
     }
 
-    public long getDepartmentId() {
+    public String getDepartmentId() {
         return departmentId;
     }
 }

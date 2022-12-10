@@ -2,6 +2,7 @@ package com.studentinformationsystem.registrarservice.model;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
 import java.util.Objects;
@@ -10,9 +11,9 @@ import java.util.Objects;
 @Table(name = "semesters")
 public class Semester {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
     private String name;
     private Date startDate;
     private Date finishDate;
@@ -21,7 +22,7 @@ public class Semester {
     public Semester() {
     }
 
-    public Semester(Long id, String name, Date startDate, Date finishDate) {
+    public Semester(String id, String name, Date startDate, Date finishDate) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -30,7 +31,7 @@ public class Semester {
 
 
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

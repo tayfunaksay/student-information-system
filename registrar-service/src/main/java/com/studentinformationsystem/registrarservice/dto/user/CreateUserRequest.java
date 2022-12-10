@@ -2,12 +2,12 @@ package com.studentinformationsystem.registrarservice.dto.user;
 
 public class CreateUserRequest {
 
-    private long roleId;
+    private String roleId;
     private String password;
     private String educationalEmail;
-    private long staffIdWhoSendRequest;
+    private String staffIdWhoSendRequest;
 
-    public long getRoleId() {
+    public String getRoleId() {
         return roleId;
     }
 
@@ -19,7 +19,7 @@ public class CreateUserRequest {
         return educationalEmail;
     }
 
-    public long getStaffIdWhoSendRequest() {
+    public String getStaffIdWhoSendRequest() {
         return staffIdWhoSendRequest;
     }
 }

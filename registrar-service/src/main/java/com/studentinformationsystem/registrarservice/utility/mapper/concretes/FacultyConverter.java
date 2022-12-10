@@ -15,6 +15,7 @@ public class FacultyConverter implements FacultyMapper {
     @Override
     public FacultyDto toFacultyDto(Faculty from) {
         return FacultyDto.builder()
+                .id(from.getId())
                 .name(from.getName())
                 .build();
     }
@@ -36,6 +37,7 @@ public class FacultyConverter implements FacultyMapper {
     @Override
     public Faculty toFaculty(UpdateFacultyRequest request) {
         return Faculty.builder()
+                .id(request.getId())
                 .name(request.getName())
                 .build();
     }

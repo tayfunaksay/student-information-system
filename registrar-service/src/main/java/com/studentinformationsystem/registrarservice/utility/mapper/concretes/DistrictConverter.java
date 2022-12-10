@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 public class DistrictConverter implements DistrictMapper {
     @Override
     public DistrictDto toDistrictDto(District from) {
-        return DistrictDto
-                .builder()
+        return DistrictDto.builder()
+                .id(from.getId())
                 .name(from.getName())
                 .build();
     }
@@ -43,6 +43,7 @@ public class DistrictConverter implements DistrictMapper {
     @Override
     public District toDistrict(UpdateDistrictRequest request) {
         return District.builder()
+                .id(request.getId())
                 .name(request.getName())
                 .build();
     }

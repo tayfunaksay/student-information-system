@@ -23,6 +23,7 @@ public class DetailConverter implements DetailMapper {
     @Override
     public DetailDto toDetailDto(Detail from) {
         return DetailDto.builder()
+                .id(from.getId())
                 .nationalIdentity(from.getNationalIdentity())
                 .gender(from.getGender())
                 .addresses(addressMapper.toAddressDtoList(from.getAddresses()))
@@ -51,6 +52,7 @@ public class DetailConverter implements DetailMapper {
     @Override
     public Detail toDetail(UpdateDetailRequest request) {
         return Detail.builder()
+                .id(request.getId())
                 .nationalIdentity(request.getNationalIdentity())
                 .gender(request.getGender())
                 .addresses(request.getAddresses()

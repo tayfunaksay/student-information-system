@@ -17,7 +17,7 @@ public class CourseManager implements CourseService
     }
 
     @Override
-    public CourseDto delete(long courseId) {
+    public CourseDto delete(String courseId) {
         return null;
     }
 
@@ -32,7 +32,7 @@ public class CourseManager implements CourseService
     }
 
     @Override
-    public CourseDto getById(long courseId) {
+    public CourseDto getById(String courseId) {
         return null;
     }
 }

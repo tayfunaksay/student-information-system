@@ -16,7 +16,7 @@ public class FacultyManager implements FacultyService {
     }
 
     @Override
-    public FacultyDto delete(long facultyId) {
+    public FacultyDto delete(String facultyId) {
         return null;
     }
 
@@ -31,7 +31,7 @@ public class FacultyManager implements FacultyService {
     }
 
     @Override
-    public FacultyDto getById(long facultyId) {
+    public FacultyDto getById(String facultyId) {
         return null;
     }
 }

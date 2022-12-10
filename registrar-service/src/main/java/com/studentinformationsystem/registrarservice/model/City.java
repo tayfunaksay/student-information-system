@@ -2,6 +2,7 @@ package com.studentinformationsystem.registrarservice.model;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,9 +13,9 @@ import java.util.Objects;
 public class City {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private short id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "city",cascade = CascadeType.ALL)
     private List<District> districts;
@@ -30,7 +31,7 @@ public class City {
     public City() {
     }
 
-    public City(short id, List<District> districts, Address address, String name, short plateNumber) {
+    public City(String id, List<District> districts, Address address, String name, short plateNumber) {
         this.id = id;
         this.districts = districts;
         this.address = address;
@@ -38,7 +39,7 @@ public class City {
         this.plateNumber = plateNumber;
     }
 
-    public short getId() {
+    public String getId() {
         return id;
     }
 

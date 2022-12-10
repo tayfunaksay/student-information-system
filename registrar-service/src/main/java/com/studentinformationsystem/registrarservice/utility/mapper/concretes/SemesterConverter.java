@@ -15,6 +15,7 @@ public class SemesterConverter implements SemesterMapper {
     @Override
     public SemesterDto toSemesterDto(Semester from) {
         return SemesterDto.builder()
+                .id(from.getId())
                 .name(from.getName())
                 .startDate(from.getStartDate())
                 .finishDate(from.getFinishDate())
@@ -40,6 +41,7 @@ public class SemesterConverter implements SemesterMapper {
     @Override
     public Semester toSemester(UpdateSemesterRequest request) {
         return Semester.builder()
+                .id(request.getId())
                 .name(request.getName())
                 .startDate(request.getStartDate())
                 .finishDate(request.getFinishDate())

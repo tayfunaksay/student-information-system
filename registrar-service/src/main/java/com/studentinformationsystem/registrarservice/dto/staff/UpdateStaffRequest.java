@@ -3,14 +3,18 @@ package com.studentinformationsystem.registrarservice.dto.staff;
 import com.studentinformationsystem.registrarservice.dto.detail.CreateDetailRequest;
 
 public class UpdateStaffRequest {
-
-    private long departmentId;
+    private String id;
+    private String departmentId;
     private String firstName;
     private String lastName;
     private String educationalEmail;
     private CreateDetailRequest detail;
 
-    public long getDepartmentId() {
+    public String getId() {
+        return id;
+    }
+
+    public String getDepartmentId() {
         return departmentId;
     }
 

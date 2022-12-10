@@ -1,9 +1,14 @@
 package com.studentinformationsystem.registrarservice.dto.user;
 
 public class UpdateUserRequest {
+    private String id;
     private String password;
     private String educationalEmail;
-    private long staffIdWhoSendRequest;
+    private String staffIdWhoSendRequest;
+
+    public String getId() {
+        return id;
+    }
 
     public String getPassword() {
         return password;
@@ -13,7 +18,7 @@ public class UpdateUserRequest {
         return educationalEmail;
     }
 
-    public long getStaffIdWhoSendRequest() {
+    public String getStaffIdWhoSendRequest() {
         return staffIdWhoSendRequest;
     }
 }

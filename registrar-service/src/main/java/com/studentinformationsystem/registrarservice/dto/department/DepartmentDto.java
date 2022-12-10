@@ -5,6 +5,7 @@ import lombok.Builder;
 
 @Builder
 public class DepartmentDto {
+    private String id;
     private FacultyDto facultyDto;
     private String name;
     private String code;
@@ -12,7 +13,8 @@ public class DepartmentDto {
     public DepartmentDto() {
     }
 
-    public DepartmentDto(FacultyDto facultyDto, String name, String code) {
+    public DepartmentDto(String id,FacultyDto facultyDto, String name, String code) {
+        this.id=id;
         this.facultyDto = facultyDto;
         this.name = name;
         this.code = code;

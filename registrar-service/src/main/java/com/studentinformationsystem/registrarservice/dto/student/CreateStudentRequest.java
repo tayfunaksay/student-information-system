@@ -4,7 +4,7 @@ import com.studentinformationsystem.registrarservice.dto.detail.CreateDetailRequ
 
 public class CreateStudentRequest {
     private long studentNumber;
-    private long departmentId;
+    private String departmentId;
     private String firstName;
     private String lastName;
     private String educationalEmail;
@@ -15,7 +15,7 @@ public class CreateStudentRequest {
         return studentNumber;
     }
 
-    public long getDepartmentId() {
+    public String getDepartmentId() {
         return departmentId;
     }
 

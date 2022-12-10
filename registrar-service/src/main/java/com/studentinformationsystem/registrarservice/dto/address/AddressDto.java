@@ -7,6 +7,7 @@ import lombok.Builder;
 @Builder
 public class AddressDto {
 
+    private String id;
     private CityDto cityDto;
 
     private DistrictDto districtDto;
@@ -18,7 +19,8 @@ public class AddressDto {
     public AddressDto() {
     }
 
-    public AddressDto(CityDto cityDto, DistrictDto districtDto, String postCode, String street) {
+    public AddressDto(String id, CityDto cityDto, DistrictDto districtDto, String postCode, String street) {
+        this.id = id;
         this.cityDto = cityDto;
         this.districtDto = districtDto;
         this.postCode = postCode;

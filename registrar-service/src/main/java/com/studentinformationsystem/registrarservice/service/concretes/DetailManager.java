@@ -16,7 +16,7 @@ public class DetailManager implements DetailService {
     }
 
     @Override
-    public DetailDto delete(long detailId) {
+    public DetailDto delete(String detailId) {
         return null;
     }
 
@@ -31,7 +31,7 @@ public class DetailManager implements DetailService {
     }
 
     @Override
-    public DetailDto getById(long detailId) {
+    public DetailDto getById(String detailId) {
         return null;
     }
 }

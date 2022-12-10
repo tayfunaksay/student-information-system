@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface DepartmentService {
     DepartmentDto create (CreateDepartmentRequest request);
-    DepartmentDto delete (long departmentId);
+    DepartmentDto delete (String departmentId);
     DepartmentDto update (UpdateDepartmentRequest request);
     List<DepartmentDto> getAll();
-    DepartmentDto getById(long departmentId);
+    DepartmentDto getById(String departmentId);
 }

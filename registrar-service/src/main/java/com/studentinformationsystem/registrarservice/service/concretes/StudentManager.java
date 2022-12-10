@@ -16,7 +16,7 @@ public class StudentManager implements StudentService {
     }
 
     @Override
-    public StudentDto delete(long studentId) {
+    public StudentDto delete(String studentId) {
         return null;
     }
 
@@ -31,7 +31,7 @@ public class StudentManager implements StudentService {
     }
 
     @Override
-    public StudentDto getById(long studentId) {
+    public StudentDto getById(String studentId) {
         return null;
     }
 }

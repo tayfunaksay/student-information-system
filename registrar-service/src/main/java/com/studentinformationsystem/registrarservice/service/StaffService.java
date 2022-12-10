@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface StaffService {
     StaffDto create (CreateStaffRequest request);
-    StaffDto delete (long staffId);
+    StaffDto delete (String staffId);
     StaffDto update (UpdateStaffRequest request);
     List<StaffDto> getAll();
-    StaffDto getById(long staffId);
+    StaffDto getById(String staffId);
 }
