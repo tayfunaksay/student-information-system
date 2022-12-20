@@ -17,4 +17,16 @@ public class CityDto {
         this.name = name;
         this.plateNumber = plateNumber;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public short getPlateNumber() {
+        return plateNumber;
+    }
 }

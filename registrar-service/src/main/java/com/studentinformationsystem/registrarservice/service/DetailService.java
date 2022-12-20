@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DetailService {
     DetailDto create (CreateDetailRequest request);
-    DetailDto delete (String detailId);
+    void delete (String detailId);
     DetailDto update (UpdateDetailRequest request);
     List<DetailDto> getAll();
     DetailDto getById(String detailId);

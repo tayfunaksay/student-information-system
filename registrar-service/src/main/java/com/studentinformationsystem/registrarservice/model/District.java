@@ -13,11 +13,11 @@ public class District {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id",nullable = false)
     private City city;
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "district")
+    @OneToOne(fetch = FetchType.EAGER,mappedBy = "district")
     private Address address;
 
     private String name;

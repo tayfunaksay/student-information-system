@@ -10,7 +10,7 @@ public interface CityService {
 
     CityDto create (CreateCityRequest request);
 
-    //CityDto delete (String cityId);
+    //void delete (String cityId);
     CityDto update (UpdateCityRequest request);
     List<CityDto> getAll();
     CityDto getById(String cityId);

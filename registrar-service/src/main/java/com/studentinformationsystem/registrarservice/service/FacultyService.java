@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface FacultyService {
     FacultyDto create (CreateFacultyRequest request);
-    FacultyDto delete (String facultyId);
+    void delete (String facultyId);
     FacultyDto update (UpdateFacultyRequest request);
     List<FacultyDto> getAll();
     FacultyDto getById(String facultyId);

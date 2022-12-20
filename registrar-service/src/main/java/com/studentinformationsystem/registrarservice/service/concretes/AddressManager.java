@@ -3,6 +3,7 @@ package com.studentinformationsystem.registrarservice.service.concretes;
 import com.studentinformationsystem.registrarservice.dto.address.AddressDto;
 import com.studentinformationsystem.registrarservice.dto.address.CreateAddressRequest;
 import com.studentinformationsystem.registrarservice.dto.address.UpdateAddressRequest;
+import com.studentinformationsystem.registrarservice.exception.AddressNotFoundException;
 import com.studentinformationsystem.registrarservice.repository.AddressRepository;
 import com.studentinformationsystem.registrarservice.service.AddressService;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.AddressMapper;
@@ -12,7 +13,6 @@ import java.util.List;
 
 @Service
 public class AddressManager implements AddressService {
-
     private final AddressRepository addressRepository;
     private final AddressMapper addressMapper;
 
@@ -33,16 +33,22 @@ public class AddressManager implements AddressService {
 
     @Override
     public AddressDto update(UpdateAddressRequest request) {
-        return null;
+        if (addressRepository.findById(request.getId()).isEmpty()) {
+            throw new AddressNotFoundException("Address could not found by id: " + request.getId());
+        } else {
+            return addressMapper.toAddressDto(addressRepository.save(addressMapper.toAddress(request)));
+        }
     }
 
     @Override
     public List<AddressDto> getAll() {
-        return null;
+        return addressMapper.toAddressDtoList(addressRepository.findAll());
     }
 
     @Override
     public AddressDto getById(String addressId) {
-        return null;
+        return addressMapper.toAddressDto(addressRepository.findById(addressId)
+                .orElseThrow(() -> new AddressNotFoundException("Address could not found by id: " + addressId)));
     }
+
 }

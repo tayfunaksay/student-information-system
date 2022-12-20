@@ -5,7 +5,6 @@ import com.studentinformationsystem.registrarservice.dto.address.CreateAddressRe
 import com.studentinformationsystem.registrarservice.dto.address.UpdateAddressRequest;
 import com.studentinformationsystem.registrarservice.model.Address;
 import com.studentinformationsystem.registrarservice.model.City;
-import com.studentinformationsystem.registrarservice.model.Detail;
 import com.studentinformationsystem.registrarservice.model.District;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.AddressMapper;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.CityMapper;
@@ -43,12 +42,11 @@ public class AddressConverter implements AddressMapper {
                 .collect(Collectors.toList());
     }
 
+
+
     @Override
     public Address toAddress(CreateAddressRequest request) {
         return Address.builder()
-                .detail(Detail.builder()
-                        .id(request.getDetailId())
-                        .build())
                 .city(City.builder()
                         .id(request.getCityId())
                         .build())

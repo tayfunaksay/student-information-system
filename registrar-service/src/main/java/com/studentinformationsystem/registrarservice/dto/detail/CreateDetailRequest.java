@@ -1,17 +1,18 @@
 package com.studentinformationsystem.registrarservice.dto.detail;
 
 import com.studentinformationsystem.registrarservice.dto.address.CreateAddressRequest;
-
-import java.util.List;
-
 public class CreateDetailRequest {
-
-    private List<CreateAddressRequest> addresses;
+    private CreateAddressRequest homeAddress;
+    private CreateAddressRequest workAddress;
     private String nationalIdentity;
     private String gender;
 
-    public List<CreateAddressRequest> getAddresses() {
-        return addresses;
+    public CreateAddressRequest getHomeAddress() {
+        return homeAddress;
+    }
+
+    public CreateAddressRequest getWorkAddress() {
+        return workAddress;
     }
 
     public String getNationalIdentity() {
@@ -21,4 +22,5 @@ public class CreateDetailRequest {
     public String getGender() {
         return gender;
     }
+
 }

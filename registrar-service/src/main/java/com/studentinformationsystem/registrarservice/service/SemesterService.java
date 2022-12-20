@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface SemesterService {
     SemesterDto create (CreateSemesterRequest request);
-    SemesterDto delete (String semesterId);
+    void delete (String semesterId);
     SemesterDto update (UpdateSemesterRequest request);
     List<SemesterDto> getAll();
     SemesterDto getById(String semesterId);

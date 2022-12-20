@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.List;
 import java.util.Objects;
+
 @Builder
 @Entity
 @Table(name = "details")
@@ -25,8 +25,13 @@ public class Detail {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "detail")
     private Staff staff;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "detail", cascade = CascadeType.ALL)
-    private List<Address> addresses;
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "home_address_id")
+    private Address homeAddress;
+
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "work_address_id")
+    private Address workAddress;
 
     private String nationalIdentity;
     private String gender;
@@ -35,23 +40,16 @@ public class Detail {
     public Detail() {
     }
 
-    public Detail(String  id,
-                  Student student,
-                  Instructor instructor,
-                  Staff staff,
-                  List<Address> addresses,
-                  String nationalIdentity,
-                  String gender) {
+    public Detail(String id, Student student, Instructor instructor, Staff staff, Address homeAddress, Address workAddress, String nationalIdentity, String gender) {
         this.id = id;
         this.student = student;
         this.instructor = instructor;
         this.staff = staff;
-        this.addresses = addresses;
+        this.homeAddress = homeAddress;
+        this.workAddress = workAddress;
         this.nationalIdentity = nationalIdentity;
         this.gender = gender;
     }
-
-
 
     public String getId() {
         return id;
@@ -69,8 +67,12 @@ public class Detail {
         return staff;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
+    public Address getHomeAddress() {
+        return homeAddress;
+    }
+
+    public Address getWorkAddress() {
+        return workAddress;
     }
 
     public String getNationalIdentity() {
@@ -86,22 +88,23 @@ public class Detail {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Detail detail = (Detail) o;
-        return Objects.equals(id, detail.id) && Objects.equals(student, detail.student) && Objects.equals(instructor, detail.instructor) && Objects.equals(staff, detail.staff) && Objects.equals(addresses, detail.addresses) && Objects.equals(nationalIdentity, detail.nationalIdentity) && Objects.equals(gender, detail.gender);
+        return Objects.equals(id, detail.id) && Objects.equals(student, detail.student) && Objects.equals(instructor, detail.instructor) && Objects.equals(staff, detail.staff) && Objects.equals(homeAddress, detail.homeAddress) && Objects.equals(workAddress, detail.workAddress) && Objects.equals(nationalIdentity, detail.nationalIdentity) && Objects.equals(gender, detail.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, student, instructor, staff, addresses, nationalIdentity, gender);
+        return Objects.hash(id, student, instructor, staff, homeAddress, workAddress, nationalIdentity, gender);
     }
 
     @Override
     public String toString() {
         return "Detail{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", student=" + student +
                 ", instructor=" + instructor +
                 ", staff=" + staff +
-                ", addresses=" + addresses +
+                ", homeAddress=" + homeAddress +
+                ", workAddress=" + workAddress +
                 ", nationalIdentity='" + nationalIdentity + '\'' +
                 ", gender='" + gender + '\'' +
                 '}';

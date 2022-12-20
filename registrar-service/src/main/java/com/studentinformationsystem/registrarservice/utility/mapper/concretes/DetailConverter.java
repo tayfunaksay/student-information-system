@@ -26,7 +26,8 @@ public class DetailConverter implements DetailMapper {
                 .id(from.getId())
                 .nationalIdentity(from.getNationalIdentity())
                 .gender(from.getGender())
-                .addresses(addressMapper.toAddressDtoList(from.getAddresses()))
+                .homeAddress(addressMapper.toAddressDto(from.getHomeAddress()))
+                .workAddress(addressMapper.toAddressDto(from.getWorkAddress()))
                 .build();
     }
 
@@ -42,10 +43,8 @@ public class DetailConverter implements DetailMapper {
         return Detail.builder()
                 .nationalIdentity(request.getNationalIdentity())
                 .gender(request.getGender())
-                .addresses(request.getAddresses()
-                        .stream()
-                        .map(createAddressRequest -> addressMapper.toAddress(createAddressRequest))
-                        .collect(Collectors.toList()))
+                .homeAddress(addressMapper.toAddress(request.getHomeAddress()))
+                .workAddress(addressMapper.toAddress(request.getWorkAddress()))
                 .build();
     }
 
@@ -55,10 +54,8 @@ public class DetailConverter implements DetailMapper {
                 .id(request.getId())
                 .nationalIdentity(request.getNationalIdentity())
                 .gender(request.getGender())
-                .addresses(request.getAddresses()
-                        .stream()
-                        .map(updateAddressRequest -> addressMapper.toAddress(updateAddressRequest))
-                        .collect(Collectors.toList()))
+                .homeAddress(addressMapper.toAddress(request.getHomeAddress()))
+                .workAddress(addressMapper.toAddress(request.getWorkAddress()))
                 .build();
     }
 }

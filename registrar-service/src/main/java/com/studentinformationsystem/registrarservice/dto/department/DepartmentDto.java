@@ -19,4 +19,20 @@ public class DepartmentDto {
         this.name = name;
         this.code = code;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public FacultyDto getFacultyDto() {
+        return facultyDto;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCode() {
+        return code;
+    }
 }

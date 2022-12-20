@@ -1,19 +1,13 @@
 package com.studentinformationsystem.registrarservice.dto.address;
 
 import com.studentinformationsystem.registrarservice.model.AddressType;
-
 public class CreateAddressRequest {
-
-    private String detailId;
     private String cityId;
     private String districtId;
     private String postCode;
     private String street;
     private AddressType addressType;
 
-    public String getDetailId() {
-        return detailId;
-    }
 
     public String getCityId() {
         return cityId;

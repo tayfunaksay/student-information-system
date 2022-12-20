@@ -30,4 +30,32 @@ public class CourseDto {
         this.courseAKTS = courseAKTS;
         this.departmentDto = departmentDto;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getOriginalName() {
+        return originalName;
+    }
+
+    public String getTurkishName() {
+        return turkishName;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public double getCourseCredit() {
+        return courseCredit;
+    }
+
+    public short getCourseAKTS() {
+        return courseAKTS;
+    }
+
+    public DepartmentDto getDepartmentDto() {
+        return departmentDto;
+    }
 }

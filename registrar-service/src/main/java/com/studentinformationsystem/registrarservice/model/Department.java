@@ -20,16 +20,16 @@ public class Department {
     @JoinColumn(name = "faculty_id", nullable = false)
     private Faculty faculty;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
     private List<Course> courses;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
     private List<Student> students;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
     private List<Instructor> instructors;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
     private List<Staff> staffs;
 
     private long instructorIdOfHeadOfDepartment;

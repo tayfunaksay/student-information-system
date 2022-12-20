@@ -1,6 +1,7 @@
 package com.studentinformationsystem.registrarservice.dto.city;
 
 public class CreateCityRequest {
+
     private String name;
 
     private short plateNumber;

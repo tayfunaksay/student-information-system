@@ -16,11 +16,11 @@ public class Staff {
     private String id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_id", nullable = false)
+    @JoinColumn(name = "department_id")
     private Department department;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "detail_id", nullable = false)
+    @JoinColumn(name = "detail_id")
     private Detail detail;
 
     private String firstName;

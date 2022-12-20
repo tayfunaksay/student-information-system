@@ -16,8 +16,8 @@ public class StudentManager implements StudentService {
     }
 
     @Override
-    public StudentDto delete(String studentId) {
-        return null;
+    public void delete(String studentId) {
+
     }
 
     @Override
