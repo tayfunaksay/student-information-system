@@ -7,9 +7,13 @@ import com.studentinformationsystem.registrarservice.dto.faculty.UpdateFacultyRe
 import java.util.List;
 
 public interface FacultyService {
-    FacultyDto create (CreateFacultyRequest request);
-    void delete (String facultyId);
-    FacultyDto update (UpdateFacultyRequest request);
+    FacultyDto create(CreateFacultyRequest request);
+
+    void delete(String facultyId);
+
+    FacultyDto update(UpdateFacultyRequest request);
+
     List<FacultyDto> getAll();
+
     FacultyDto getById(String facultyId);
 }

@@ -7,10 +7,12 @@ import com.studentinformationsystem.registrarservice.dto.district.UpdateDistrict
 import java.util.List;
 
 public interface DistrictService {
-    DistrictDto create (CreateDistrictRequest request);
+    DistrictDto create(CreateDistrictRequest request);
 
     //DistrictDto delete (String districtId);
-    DistrictDto update (UpdateDistrictRequest request);
+    DistrictDto update(UpdateDistrictRequest request);
+
     List<DistrictDto> getAll();
+
     DistrictDto getById(String districtId);
 }

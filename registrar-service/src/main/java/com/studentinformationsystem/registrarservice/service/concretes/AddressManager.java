@@ -15,7 +15,6 @@ import java.util.List;
 public class AddressManager implements AddressService {
     private final AddressRepository addressRepository;
     private final AddressMapper addressMapper;
-
     public AddressManager(AddressRepository addressRepository, AddressMapper addressMapper) {
         this.addressRepository = addressRepository;
         this.addressMapper = addressMapper;

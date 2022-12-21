@@ -8,10 +8,12 @@ import java.util.List;
 
 public interface CityService {
 
-    CityDto create (CreateCityRequest request);
+    CityDto create(CreateCityRequest request);
 
     //void delete (String cityId);
-    CityDto update (UpdateCityRequest request);
+    CityDto update(UpdateCityRequest request);
+
     List<CityDto> getAll();
+
     CityDto getById(String cityId);
 }

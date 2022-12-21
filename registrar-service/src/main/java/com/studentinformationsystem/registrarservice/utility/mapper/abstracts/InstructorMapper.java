@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface InstructorMapper {
     InstructorDto toInstructorDto(Instructor from);
-    List<InstructorDto> toInstructorDtoList (List<Instructor> from);
+
+    List<InstructorDto> toInstructorDtoList(List<Instructor> from);
+
     Instructor toInstructor(CreateInstructorRequest request);
+
     Instructor toInstructor(UpdateInstructorRequest request);
 }

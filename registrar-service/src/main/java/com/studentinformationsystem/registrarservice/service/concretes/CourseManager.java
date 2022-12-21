@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CourseManager implements CourseService
-{
+public class CourseManager implements CourseService {
 
     private final CourseRepository courseRepository;
     private final CourseMapper courseMapper;
@@ -35,9 +34,9 @@ public class CourseManager implements CourseService
 
     @Override
     public CourseDto update(UpdateCourseRequest request) {
-        if (courseRepository.findById(request.getId()).isEmpty()){
-            throw new CourseNotFoundException("Course could not found by id: "+request.getId());
-        }else {
+        if (courseRepository.findById(request.getId()).isEmpty()) {
+            throw new CourseNotFoundException("Course could not found by id: " + request.getId());
+        } else {
             return courseMapper.toCourseDto(courseRepository.save(courseMapper.toCourse(request)));
         }
     }
@@ -50,6 +49,6 @@ public class CourseManager implements CourseService
     @Override
     public CourseDto getById(String courseId) {
         return courseMapper.toCourseDto(courseRepository.findById(courseId)
-                .orElseThrow(()-> new CourseNotFoundException("Course could not found by id: "+ courseId)));
+                .orElseThrow(() -> new CourseNotFoundException("Course could not found by id: " + courseId)));
     }
 }

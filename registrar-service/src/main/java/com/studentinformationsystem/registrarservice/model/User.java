@@ -1,17 +1,16 @@
 package com.studentinformationsystem.registrarservice.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Builder;
-import org.hibernate.annotations.GenericGenerator;
 
 @Builder
 @Entity
-@Table(name="users")
-public class User  {
+@Table(name = "users")
+public class User {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
     private String firstPassword;
     private String educationalEmail;

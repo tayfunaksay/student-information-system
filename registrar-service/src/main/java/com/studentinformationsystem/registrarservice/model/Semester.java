@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
 import java.util.Objects;
+
 @Builder
 @Entity
 @Table(name = "semesters")
@@ -28,7 +29,6 @@ public class Semester {
         this.startDate = startDate;
         this.finishDate = finishDate;
     }
-
 
 
     public String getId() {

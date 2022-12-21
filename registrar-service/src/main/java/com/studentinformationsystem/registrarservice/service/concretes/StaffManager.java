@@ -3,6 +3,7 @@ package com.studentinformationsystem.registrarservice.service.concretes;
 import com.studentinformationsystem.registrarservice.dto.staff.CreateStaffRequest;
 import com.studentinformationsystem.registrarservice.dto.staff.StaffDto;
 import com.studentinformationsystem.registrarservice.dto.staff.UpdateStaffRequest;
+import com.studentinformationsystem.registrarservice.exception.StaffNotFoundException;
 import com.studentinformationsystem.registrarservice.repository.StaffRepository;
 import com.studentinformationsystem.registrarservice.service.StaffService;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.StaffMapper;
@@ -32,16 +33,21 @@ public class StaffManager implements StaffService {
 
     @Override
     public StaffDto update(UpdateStaffRequest request) {
-        return null;
+        if (staffRepository.findById(request.getId()).isEmpty()) {
+            throw new StaffNotFoundException("Staff could not found by id: " + request.getId());
+        }else {
+            return staffMapper.toStaffDto(staffRepository.save(staffMapper.toStaff(request)));
+        }
     }
 
     @Override
     public List<StaffDto> getAll() {
-        return null;
+        return staffMapper.toStaffDtoList(staffRepository.findAll());
     }
 
     @Override
     public StaffDto getById(String staffId) {
-        return null;
+        return staffMapper.toStaffDto(staffRepository.findById(staffId)
+                .orElseThrow(()-> new StaffNotFoundException("Staff could not found by id: "+staffId)));
     }
 }

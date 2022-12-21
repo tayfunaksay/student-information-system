@@ -5,6 +5,7 @@ import com.studentinformationsystem.registrarservice.dto.student.StudentDto;
 import com.studentinformationsystem.registrarservice.dto.student.UpdateStudentRequest;
 import com.studentinformationsystem.registrarservice.model.Department;
 import com.studentinformationsystem.registrarservice.model.Student;
+import com.studentinformationsystem.registrarservice.service.DepartmentService;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.DepartmentMapper;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.DetailMapper;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.StudentMapper;
@@ -17,12 +18,13 @@ import java.util.stream.Collectors;
 public class StudentConverter implements StudentMapper {
     private final DepartmentMapper departmentMapper;
     private final DetailMapper detailMapper;
+    private final DepartmentService departmentService;
 
-    public StudentConverter(DepartmentMapper departmentMapper, DetailMapper detailMapper) {
+    public StudentConverter(DepartmentMapper departmentMapper, DetailMapper detailMapper, DepartmentService departmentService) {
         this.departmentMapper = departmentMapper;
         this.detailMapper = detailMapper;
+        this.departmentService = departmentService;
     }
-
     @Override
     public StudentDto toStudentDto(Student from) {
         return StudentDto.builder()
@@ -52,9 +54,7 @@ public class StudentConverter implements StudentMapper {
                 .studentNumber(request.getStudentNumber())
                 .educationalEmail(request.getEducationalEmail())
                 .emailAddress(request.getEmailAddress())
-                .department(Department.builder()
-                        .id(request.getDepartmentId())
-                        .build())
+                .department(departmentMapper.toDepartment(departmentService.getById(request.getDepartmentId())))
                 .detail(detailMapper.toDetail(request.getDetail()))
                 .build();
     }

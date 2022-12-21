@@ -7,9 +7,13 @@ import com.studentinformationsystem.registrarservice.dto.course.UpdateCourseRequ
 import java.util.List;
 
 public interface CourseService {
-    CourseDto create (CreateCourseRequest request);
-    void delete (String courseId);
-    CourseDto update (UpdateCourseRequest request);
+    CourseDto create(CreateCourseRequest request);
+
+    void delete(String courseId);
+
+    CourseDto update(UpdateCourseRequest request);
+
     List<CourseDto> getAll();
+
     CourseDto getById(String courseId);
 }

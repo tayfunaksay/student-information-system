@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface DetailMapper {
     DetailDto toDetailDto(Detail from);
-    List<DetailDto> toDetailDtoList (List<Detail> from);
+
+    List<DetailDto> toDetailDtoList(List<Detail> from);
+
     Detail toDetail(CreateDetailRequest request);
+
     Detail toDetail(UpdateDetailRequest request);
 }

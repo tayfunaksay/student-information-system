@@ -33,9 +33,9 @@ public class SemesterManager implements SemesterService {
 
     @Override
     public SemesterDto update(UpdateSemesterRequest request) {
-        if (semesterRepository.findById(request.getId()).isEmpty()){
-            throw new SemesterNotFoundException("Semester could not found by id: "+request.getId());
-        }else{
+        if (semesterRepository.findById(request.getId()).isEmpty()) {
+            throw new SemesterNotFoundException("Semester could not found by id: " + request.getId());
+        } else {
             return semesterMapper.toSemesterDto(semesterRepository.save(semesterMapper.toSemester(request)));
         }
     }
@@ -48,6 +48,6 @@ public class SemesterManager implements SemesterService {
     @Override
     public SemesterDto getById(String semesterId) {
         return semesterMapper.toSemesterDto(semesterRepository.findById(semesterId)
-                .orElseThrow(()-> new SemesterNotFoundException("Semester could not found by id: "+semesterId)));
+                .orElseThrow(() -> new SemesterNotFoundException("Semester could not found by id: " + semesterId)));
     }
 }

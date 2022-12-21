@@ -28,9 +28,9 @@ public class CityManager implements CityService {
 
     @Override
     public CityDto update(UpdateCityRequest request) {
-        if (cityRepository.findById(request.getId()).isEmpty()){
-            throw new CityNotFoundException("City could not found by id: " +request.getId());
-        }else {
+        if (cityRepository.findById(request.getId()).isEmpty()) {
+            throw new CityNotFoundException("City could not found by id: " + request.getId());
+        } else {
             return cityMapper.toCityDto(cityRepository.save(cityMapper.toCity(request)));
         }
     }
@@ -43,6 +43,6 @@ public class CityManager implements CityService {
     @Override
     public CityDto getById(String cityId) {
         return cityMapper.toCityDto(cityRepository.findById(cityId)
-                .orElseThrow(()-> new CityNotFoundException("City could not found by id: "+cityId)));
+                .orElseThrow(() -> new CityNotFoundException("City could not found by id: " + cityId)));
     }
 }

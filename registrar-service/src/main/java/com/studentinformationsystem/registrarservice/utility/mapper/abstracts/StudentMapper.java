@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface StudentMapper {
     StudentDto toStudentDto(Student from);
-    List<StudentDto> toStudentDtoList (List<Student> from);
+
+    List<StudentDto> toStudentDtoList(List<Student> from);
+
     Student toStudent(CreateStudentRequest request);
+
     Student toStudent(UpdateStudentRequest request);
 }

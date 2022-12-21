@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface StaffMapper {
     StaffDto toStaffDto(Staff from);
-    List<StaffDto> toStaffDtoList (List<Staff> from);
+
+    List<StaffDto> toStaffDtoList(List<Staff> from);
+
     Staff toStaff(CreateStaffRequest request);
+
     Staff toStaff(UpdateStaffRequest request);
 }

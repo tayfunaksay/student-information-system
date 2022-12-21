@@ -7,9 +7,13 @@ import com.studentinformationsystem.registrarservice.dto.instructor.UpdateInstru
 import java.util.List;
 
 public interface InstructorService {
-    InstructorDto create (CreateInstructorRequest request);
-    void delete (String instructorId);
-    InstructorDto update (UpdateInstructorRequest request);
+    InstructorDto create(CreateInstructorRequest request);
+
+    void delete(String instructorId);
+
+    InstructorDto update(UpdateInstructorRequest request);
+
     List<InstructorDto> getAll();
+
     InstructorDto getById(String instructorId);
 }

@@ -19,7 +19,6 @@ public class DepartmentConverter implements DepartmentMapper {
     public DepartmentConverter(FacultyMapper facultyMapper) {
         this.facultyMapper = facultyMapper;
     }
-
     @Override
     public DepartmentDto toDepartmentDto(Department from) {
         return DepartmentDto.builder()
@@ -27,6 +26,16 @@ public class DepartmentConverter implements DepartmentMapper {
                 .name(from.getName())
                 .code(from.getCode())
                 .facultyDto(facultyMapper.toFacultyDto(from.getFaculty()))
+                .build();
+    }
+
+    @Override
+    public Department toDepartment(DepartmentDto fromDto) {
+        return Department.builder()
+                .id(fromDto.getId())
+                .name(fromDto.getName())
+                .code(fromDto.getCode())
+                .faculty(facultyMapper.toFaculty(fromDto.getFacultyDto()))
                 .build();
     }
 

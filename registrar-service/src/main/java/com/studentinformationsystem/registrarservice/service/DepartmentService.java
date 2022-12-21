@@ -7,9 +7,13 @@ import com.studentinformationsystem.registrarservice.dto.department.UpdateDepart
 import java.util.List;
 
 public interface DepartmentService {
-    DepartmentDto create (CreateDepartmentRequest request);
-    void delete (String departmentId);
-    DepartmentDto update (UpdateDepartmentRequest request);
+    DepartmentDto create(CreateDepartmentRequest request);
+
+    void delete(String departmentId);
+
+    DepartmentDto update(UpdateDepartmentRequest request);
+
     List<DepartmentDto> getAll();
+
     DepartmentDto getById(String departmentId);
 }

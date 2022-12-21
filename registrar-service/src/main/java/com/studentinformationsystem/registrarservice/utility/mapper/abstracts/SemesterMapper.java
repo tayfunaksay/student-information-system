@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface SemesterMapper {
     SemesterDto toSemesterDto(Semester from);
-    List<SemesterDto> toSemesterDtoList (List<Semester> from);
+
+    List<SemesterDto> toSemesterDtoList(List<Semester> from);
+
     Semester toSemester(CreateSemesterRequest request);
+
     Semester toSemester(UpdateSemesterRequest request);
 }

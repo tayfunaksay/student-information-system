@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class InstructorConverter implements InstructorMapper {
-
     private final DepartmentMapper departmentMapper;
     private final DetailMapper detailMapper;
 

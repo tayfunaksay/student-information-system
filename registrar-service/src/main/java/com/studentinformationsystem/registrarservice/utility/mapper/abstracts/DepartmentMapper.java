@@ -9,7 +9,11 @@ import java.util.List;
 
 public interface DepartmentMapper {
     DepartmentDto toDepartmentDto(Department from);
-    List<DepartmentDto> toDepartmentDtoList (List<Department> from);
+    Department toDepartment(DepartmentDto fromDto);
+
+    List<DepartmentDto> toDepartmentDtoList(List<Department> from);
+
     Department toDepartment(CreateDepartmentRequest request);
+
     Department toDepartment(UpdateDepartmentRequest request);
 }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 public class UserConverter implements UserMapper {
     @Override
     public void toDo() {
-        //TODO: Authentication ve Autorization Api GateWay Üzerinde olacak. O kısım yazıldığında düzenleme yap.
+        //TODO: Authentication ve  Autorization Api GateWay Üzerinde olacak. O kısım yazıldığında düzenleme yap.
     }
 }

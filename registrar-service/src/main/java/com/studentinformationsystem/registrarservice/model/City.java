@@ -11,17 +11,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "cities")
 public class City {
-
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "city")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "city")
     private List<District> districts;
 
-    @OneToOne(mappedBy = "city")
-    private Address address;
+    @OneToMany(mappedBy = "city")
+    private List<Address> addresses;
 
     private String name;
 
@@ -31,10 +30,10 @@ public class City {
     public City() {
     }
 
-    public City(String id, List<District> districts, Address address, String name, short plateNumber) {
+    public City(String id, List<District> districts, List<Address> addresses, String name, short plateNumber) {
         this.id = id;
         this.districts = districts;
-        this.address = address;
+        this.addresses = addresses;
         this.name = name;
         this.plateNumber = plateNumber;
     }
@@ -47,8 +46,8 @@ public class City {
         return districts;
     }
 
-    public Address getAddress() {
-        return address;
+    public List<Address> getAddresses() {
+        return addresses;
     }
 
     public String getName() {
@@ -64,20 +63,20 @@ public class City {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         City city = (City) o;
-        return id == city.id && plateNumber == city.plateNumber && Objects.equals(districts, city.districts) && Objects.equals(address, city.address) && Objects.equals(name, city.name);
+        return plateNumber == city.plateNumber && Objects.equals(id, city.id) && Objects.equals(districts, city.districts) && Objects.equals(addresses, city.addresses) && Objects.equals(name, city.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, districts, address, name, plateNumber);
+        return Objects.hash(id, districts, addresses, name, plateNumber);
     }
 
     @Override
     public String toString() {
         return "City{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", districts=" + districts +
-                ", address=" + address +
+                ", addresses=" + addresses +
                 ", name='" + name + '\'' +
                 ", plateNumber=" + plateNumber +
                 '}';

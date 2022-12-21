@@ -21,7 +21,6 @@ public class SemesterConverter implements SemesterMapper {
                 .finishDate(from.getFinishDate())
                 .build();
     }
-
     @Override
     public List<SemesterDto> toSemesterDtoList(List<Semester> from) {
         return from.stream()

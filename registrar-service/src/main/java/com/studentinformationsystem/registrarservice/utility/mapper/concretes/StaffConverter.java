@@ -22,7 +22,6 @@ public class StaffConverter implements StaffMapper {
         this.departmentMapper = departmentMapper;
         this.detailMapper = detailMapper;
     }
-
     @Override
     public StaffDto toStaffDto(Staff from) {
         return StaffDto.builder()

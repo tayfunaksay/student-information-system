@@ -11,13 +11,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "departments")
 public class Department {
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "faculty_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")

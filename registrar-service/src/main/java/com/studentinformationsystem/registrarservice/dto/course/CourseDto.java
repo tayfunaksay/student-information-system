@@ -3,6 +3,8 @@ package com.studentinformationsystem.registrarservice.dto.course;
 import com.studentinformationsystem.registrarservice.dto.department.DepartmentDto;
 import lombok.Builder;
 
+import java.util.Objects;
+
 @Builder
 public class CourseDto {
     private String id;
@@ -57,5 +59,31 @@ public class CourseDto {
 
     public DepartmentDto getDepartmentDto() {
         return departmentDto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseDto courseDto = (CourseDto) o;
+        return Double.compare(courseDto.courseCredit, courseCredit) == 0 && courseAKTS == courseDto.courseAKTS && Objects.equals(id, courseDto.id) && Objects.equals(originalName, courseDto.originalName) && Objects.equals(turkishName, courseDto.turkishName) && Objects.equals(code, courseDto.code) && Objects.equals(departmentDto, courseDto.departmentDto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, originalName, turkishName, code, courseCredit, courseAKTS, departmentDto);
+    }
+
+    @Override
+    public String toString() {
+        return "CourseDto{" +
+                "id='" + id + '\'' +
+                ", originalName='" + originalName + '\'' +
+                ", turkishName='" + turkishName + '\'' +
+                ", code='" + code + '\'' +
+                ", courseCredit=" + courseCredit +
+                ", courseAKTS=" + courseAKTS +
+                ", departmentDto=" + departmentDto +
+                '}';
     }
 }

@@ -9,7 +9,11 @@ import java.util.List;
 
 public interface FacultyMapper {
     FacultyDto toFacultyDto(Faculty from);
-    List<FacultyDto> toFacultyDtoList (List<Faculty> from);
+    Faculty toFaculty (FacultyDto fromDto);
+
+    List<FacultyDto> toFacultyDtoList(List<Faculty> from);
+
     Faculty toFaculty(CreateFacultyRequest request);
+
     Faculty toFaculty(UpdateFacultyRequest request);
 }

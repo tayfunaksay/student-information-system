@@ -25,11 +25,11 @@ public class Detail {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "detail")
     private Staff staff;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "home_address_id")
     private Address homeAddress;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "work_address_id")
     private Address workAddress;
 

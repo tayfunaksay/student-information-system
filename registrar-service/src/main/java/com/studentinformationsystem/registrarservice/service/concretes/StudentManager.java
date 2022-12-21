@@ -3,35 +3,52 @@ package com.studentinformationsystem.registrarservice.service.concretes;
 import com.studentinformationsystem.registrarservice.dto.student.CreateStudentRequest;
 import com.studentinformationsystem.registrarservice.dto.student.StudentDto;
 import com.studentinformationsystem.registrarservice.dto.student.UpdateStudentRequest;
+import com.studentinformationsystem.registrarservice.exception.StudentNotFoundException;
+import com.studentinformationsystem.registrarservice.repository.StudentRepository;
 import com.studentinformationsystem.registrarservice.service.StudentService;
+import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.StudentMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class StudentManager implements StudentService {
+    private final StudentRepository studentRepository;
+    private final StudentMapper studentMapper;
+
+    public StudentManager(StudentRepository studentRepository, StudentMapper studentMapper) {
+        this.studentRepository = studentRepository;
+        this.studentMapper = studentMapper;
+    }
+
     @Override
     public StudentDto create(CreateStudentRequest request) {
-        return null;
+
+        return studentMapper.toStudentDto(studentRepository.save(studentMapper.toStudent(request)));
     }
 
     @Override
     public void delete(String studentId) {
-
+        studentRepository.deleteById(studentId);
     }
 
     @Override
     public StudentDto update(UpdateStudentRequest request) {
-        return null;
+        if (studentRepository.findById(request.getId()).isEmpty()) {
+            throw new StudentNotFoundException("Student could not found by id: " + request.getId());
+        } else {
+            return studentMapper.toStudentDto(studentRepository.save(studentMapper.toStudent(request)));
+        }
     }
 
     @Override
     public List<StudentDto> getAll() {
-        return null;
+        return studentMapper.toStudentDtoList(studentRepository.findAll());
     }
 
     @Override
     public StudentDto getById(String studentId) {
-        return null;
+        return studentMapper.toStudentDto(studentRepository.findById(studentId)
+                .orElseThrow(() -> new StudentNotFoundException("Student could not found by id: " + studentId)));
     }
 }

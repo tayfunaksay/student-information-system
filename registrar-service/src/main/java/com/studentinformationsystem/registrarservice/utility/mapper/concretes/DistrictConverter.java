@@ -26,7 +26,7 @@ public class DistrictConverter implements DistrictMapper {
         return from.stream()
                 .map(
                         district -> toDistrictDto(district)
-                        )
+                )
                 .collect(Collectors.toList());
     }
 

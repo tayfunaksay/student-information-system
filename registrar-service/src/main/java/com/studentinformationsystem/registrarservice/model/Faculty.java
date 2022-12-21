@@ -33,7 +33,6 @@ public class Faculty {
     }
 
 
-
     public String getId() {
         return id;
     }

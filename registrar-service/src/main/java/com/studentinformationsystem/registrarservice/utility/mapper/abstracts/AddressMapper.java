@@ -9,9 +9,11 @@ import java.util.List;
 
 public interface AddressMapper {
     AddressDto toAddressDto(Address from);
-    List<AddressDto> toAddressDtoList (List<Address> from);
+
+    List<AddressDto> toAddressDtoList(List<Address> from);
 
     Address toAddress(CreateAddressRequest request);
+
     Address toAddress(UpdateAddressRequest request);
 
 

@@ -7,9 +7,13 @@ import com.studentinformationsystem.registrarservice.dto.detail.UpdateDetailRequ
 import java.util.List;
 
 public interface DetailService {
-    DetailDto create (CreateDetailRequest request);
-    void delete (String detailId);
-    DetailDto update (UpdateDetailRequest request);
+    DetailDto create(CreateDetailRequest request);
+
+    void delete(String detailId);
+
+    DetailDto update(UpdateDetailRequest request);
+
     List<DetailDto> getAll();
+
     DetailDto getById(String detailId);
 }

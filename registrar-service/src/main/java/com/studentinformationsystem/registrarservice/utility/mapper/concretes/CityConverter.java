@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class CityConverter implements CityMapper {
+
     @Override
     public CityDto toCityDto(City from) {
         return CityDto.builder()

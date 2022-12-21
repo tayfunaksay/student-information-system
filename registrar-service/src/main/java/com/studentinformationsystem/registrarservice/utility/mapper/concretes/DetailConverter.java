@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class DetailConverter implements DetailMapper {
-
     private final AddressMapper addressMapper;
 
     public DetailConverter(AddressMapper addressMapper) {

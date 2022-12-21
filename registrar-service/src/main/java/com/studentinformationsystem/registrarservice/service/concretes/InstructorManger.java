@@ -10,6 +10,7 @@ import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.In
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class InstructorManger implements InstructorService {
     private final InstructorRepository instructorRepository;
@@ -32,9 +33,9 @@ public class InstructorManger implements InstructorService {
 
     @Override
     public InstructorDto update(UpdateInstructorRequest request) {
-        if (instructorRepository.findById(request.getId()).isEmpty()){
-            throw new InstructorNotFoundException("Instructor could not found by id: "+request.getId());
-        }else {
+        if (instructorRepository.findById(request.getId()).isEmpty()) {
+            throw new InstructorNotFoundException("Instructor could not found by id: " + request.getId());
+        } else {
             return instructorMapper.toInstructorDto(instructorRepository.save(instructorMapper.toInstructor(request)));
         }
     }
@@ -47,6 +48,6 @@ public class InstructorManger implements InstructorService {
     @Override
     public InstructorDto getById(String instructorId) {
         return instructorMapper.toInstructorDto(instructorRepository.findById(instructorId)
-                .orElseThrow(()-> new InstructorNotFoundException("Instructor could not found by id: "+instructorId)));
+                .orElseThrow(() -> new InstructorNotFoundException("Instructor could not found by id: " + instructorId)));
     }
 }

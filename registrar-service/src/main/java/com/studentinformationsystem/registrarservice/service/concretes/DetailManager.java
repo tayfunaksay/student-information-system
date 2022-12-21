@@ -53,6 +53,6 @@ public class DetailManager implements DetailService {
     @Override
     public DetailDto getById(String detailId) {
         return detailMapper.toDetailDto(detailRepository.findById(detailId)
-                .orElseThrow(()-> new DetailNotFoundException("Detail not found by id: "+detailId)));
+                .orElseThrow(() -> new DetailNotFoundException("Detail not found by id: " + detailId)));
     }
 }

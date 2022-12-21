@@ -48,6 +48,6 @@ public class FacultyManager implements FacultyService {
     @Override
     public FacultyDto getById(String facultyId) {
         return facultyMapper.toFacultyDto(facultyRepository.findById(facultyId)
-                .orElseThrow(()-> new FacultyNotFoundException("Faculty could not found by id: " + facultyId)));
+                .orElseThrow(() -> new FacultyNotFoundException("Faculty could not found by id: " + facultyId)));
     }
 }

@@ -7,9 +7,13 @@ import com.studentinformationsystem.registrarservice.dto.semester.UpdateSemester
 import java.util.List;
 
 public interface SemesterService {
-    SemesterDto create (CreateSemesterRequest request);
-    void delete (String semesterId);
-    SemesterDto update (UpdateSemesterRequest request);
+    SemesterDto create(CreateSemesterRequest request);
+
+    void delete(String semesterId);
+
+    SemesterDto update(UpdateSemesterRequest request);
+
     List<SemesterDto> getAll();
+
     SemesterDto getById(String semesterId);
 }

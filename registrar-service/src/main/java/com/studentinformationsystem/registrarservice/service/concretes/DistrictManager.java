@@ -29,9 +29,9 @@ public class DistrictManager implements DistrictService {
 
     @Override
     public DistrictDto update(UpdateDistrictRequest request) {
-        if (districtRepository.findById(request.getId()).isEmpty()){
-            throw new DistrictNotFoundException("District could not found by id: " +request.getId());
-        }else {
+        if (districtRepository.findById(request.getId()).isEmpty()) {
+            throw new DistrictNotFoundException("District could not found by id: " + request.getId());
+        } else {
             return districtMapper.toDistrictDto(districtRepository.save(districtMapper.toDistrict(request)));
         }
     }
@@ -44,6 +44,6 @@ public class DistrictManager implements DistrictService {
     @Override
     public DistrictDto getById(String districtId) {
         return districtMapper.toDistrictDto(districtRepository.findById(districtId)
-                .orElseThrow(()-> new DistrictNotFoundException("District could not found by id: " + districtId)));
+                .orElseThrow(() -> new DistrictNotFoundException("District could not found by id: " + districtId)));
     }
 }

@@ -12,11 +12,20 @@ import java.util.stream.Collectors;
 
 @Component
 public class FacultyConverter implements FacultyMapper {
+    
     @Override
     public FacultyDto toFacultyDto(Faculty from) {
         return FacultyDto.builder()
                 .id(from.getId())
                 .name(from.getName())
+                .build();
+    }
+
+    @Override
+    public Faculty toFaculty(FacultyDto fromDto) {
+        return Faculty.builder()
+                .id(fromDto.getId())
+                .name(fromDto.getName())
                 .build();
     }
 

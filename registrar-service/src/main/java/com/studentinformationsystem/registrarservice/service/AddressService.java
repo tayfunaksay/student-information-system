@@ -8,10 +8,14 @@ import java.util.List;
 
 public interface AddressService {
 
-    AddressDto create (CreateAddressRequest request);
-    void delete (String addressId);
-    AddressDto update (UpdateAddressRequest request);
+    AddressDto create(CreateAddressRequest request);
+
+    void delete(String addressId);
+
+    AddressDto update(UpdateAddressRequest request);
+
     List<AddressDto> getAll();
+
     AddressDto getById(String addressId);
 
 }

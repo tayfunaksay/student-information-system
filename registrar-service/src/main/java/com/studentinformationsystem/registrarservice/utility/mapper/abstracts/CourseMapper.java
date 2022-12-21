@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface CourseMapper {
     CourseDto toCourseDto(Course from);
-    List<CourseDto> toCourseDtoList (List<Course> from);
+
+    List<CourseDto> toCourseDtoList(List<Course> from);
+
     Course toCourse(CreateCourseRequest request);
+
     Course toCourse(UpdateCourseRequest request);
 }

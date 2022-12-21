@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface DistrictMapper {
     DistrictDto toDistrictDto(District from);
-    List<DistrictDto> toDistrictDtoList (List<District> from);
+
+    List<DistrictDto> toDistrictDtoList(List<District> from);
+
     District toDistrict(CreateDistrictRequest request);
+
     District toDistrict(UpdateDistrictRequest request);
 }

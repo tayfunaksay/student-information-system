@@ -19,7 +19,6 @@ public class CourseConverter implements CourseMapper {
     public CourseConverter(DepartmentMapper departmentMapper) {
         this.departmentMapper = departmentMapper;
     }
-
     @Override
     public CourseDto toCourseDto(Course from) {
         return CourseDto.builder()

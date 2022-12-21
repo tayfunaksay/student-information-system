@@ -10,6 +10,7 @@ import java.util.Objects;
 @Entity
 @Table
 public class Staff {
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")

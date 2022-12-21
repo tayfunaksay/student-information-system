@@ -10,8 +10,9 @@ import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.De
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
-public class DepartmentManager implements DepartmentService{
+public class DepartmentManager implements DepartmentService {
 
     private final DepartmentRepository departmentRepository;
     private final DepartmentMapper departmentMapper;
@@ -33,9 +34,9 @@ public class DepartmentManager implements DepartmentService{
 
     @Override
     public DepartmentDto update(UpdateDepartmentRequest request) {
-        if (departmentRepository.findById(request.getId()).isEmpty()){
-            throw new DepartmentNotFoundException("Department could not found by id: "+request.getId());
-        }else {
+        if (departmentRepository.findById(request.getId()).isEmpty()) {
+            throw new DepartmentNotFoundException("Department could not found by id: " + request.getId());
+        } else {
             return departmentMapper.toDepartmentDto(departmentRepository.save(departmentMapper.toDepartment(request)));
         }
     }
@@ -48,6 +49,6 @@ public class DepartmentManager implements DepartmentService{
     @Override
     public DepartmentDto getById(String departmentId) {
         return departmentMapper.toDepartmentDto(departmentRepository.findById(departmentId)
-                .orElseThrow(()-> new DepartmentNotFoundException("Department could not found by id: "+departmentId)));
+                .orElseThrow(() -> new DepartmentNotFoundException("Department could not found by id: " + departmentId)));
     }
 }

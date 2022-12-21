@@ -16,17 +16,17 @@ public class Address {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "homeAddress")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "homeAddress")
     private Detail detailHome;
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "workAddress")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "workAddress")
     private Detail detailWork;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
     private City city;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "district_id")
     private District district;
 

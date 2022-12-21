@@ -16,7 +16,7 @@ public class Student {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "department_id")
     private Department department;
 
@@ -44,7 +44,6 @@ public class Student {
         this.educationalEmail = educationalEmail;
         this.emailAddress = emailAddress;
     }
-
 
 
     public String getId() {
