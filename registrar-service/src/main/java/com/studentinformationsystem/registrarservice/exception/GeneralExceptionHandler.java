@@ -36,6 +36,48 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> addressNotFoundExceptionHandler(AddressNotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
-
-
+    @ExceptionHandler(CityNotFoundException.class)
+    public ResponseEntity<?> cityNotFoundExceptionHandler(CityNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(CourseNotFoundException.class)
+    public ResponseEntity<?> courseNotFoundExceptionHandler(CourseNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(DepartmentNotFoundException.class)
+    public ResponseEntity<?> departmentNotFoundExceptionHandler(DepartmentNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(DetailNotFoundException.class)
+    public ResponseEntity<?> detailNotFoundExceptionHandler(DetailNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(DistrictNotFoundException.class)
+    public ResponseEntity<?> districtNotFoundExceptionHandler(DistrictNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(FacultyNotFoundException.class)
+    public ResponseEntity<?> facultyNotFoundExceptionHandler(FacultyNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(InstructorNotFoundException.class)
+    public ResponseEntity<?> instructorNotFoundExceptionHandler(InstructorNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(SemesterNotFoundException.class)
+    public ResponseEntity<?> semesterNotFoundExceptionHandler(SemesterNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(StaffNotFoundException.class)
+    public ResponseEntity<?> staffNotFoundExceptionHandler(StaffNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(StudentNotFoundException.class)
+    public ResponseEntity<?> studentNotFoundExceptionHandler(StudentNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<?> userNotFoundExceptionHandler(UserNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

@@ -17,16 +17,15 @@ public class CityController {
     public CityController(CityService cityService) {
         this.cityService = cityService;
     }
+
     @PostMapping("/add")
     public ResponseEntity<CityDto> create(@RequestBody CreateCityRequest request) {
         return ResponseEntity.ok(cityService.create(request));
     }
-
-    @DeleteMapping("/delete")
+    @DeleteMapping("/update")
     public ResponseEntity<CityDto> update(@RequestBody UpdateCityRequest request) {
         return ResponseEntity.ok(cityService.update(request));
     }
-
     @GetMapping("/getAll")
     public List<CityDto> getAll() {
         return cityService.getAll();
@@ -36,7 +35,6 @@ public class CityController {
     public CityDto getById(@PathVariable String cityId) {
         return cityService.getById(cityId);
     }
-
 
 
 }
