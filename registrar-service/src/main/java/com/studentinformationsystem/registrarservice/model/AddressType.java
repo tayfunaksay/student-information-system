@@ -1,7 +1,9 @@
 package com.studentinformationsystem.registrarservice.model;
 
 public enum AddressType {
-    HOME(1, "Ev"), WORK(2, "İş"), OTHER(3, "Diğer");
+    HOME(1, "Ev"),
+    WORK(2, "İş"),
+    OTHER(3, "Diğer");
 
     public final int addressTypeValue;
     public final String addressTypeName;

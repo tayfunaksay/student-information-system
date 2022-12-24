@@ -1,6 +1,7 @@
 package com.studentinformationsystem.registrarservice.exception;
 
 import jakarta.validation.constraints.NotNull;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -78,6 +79,10 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<?> userNotFoundExceptionHandler(UserNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ResponseEntity<?> emptyResultDataAccessExceptionHandler(EmptyResultDataAccessException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

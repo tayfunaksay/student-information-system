@@ -1,27 +1,22 @@
-package com.studentinformationsystem.registrarservice.model;
+package com.studentinformationsystem.registrarservice.dto.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.studentinformationsystem.registrarservice.model.UserRole;
 import lombok.Builder;
+
 import java.util.Objects;
 
 @Builder
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
+public class UserDto {
     private String id;
-    private String firstPassword;
     private String educationalEmail;
     private UserRole userRole;
     private boolean isSentToAuthServer;
-    public User() {
+
+    public UserDto() {
     }
 
-    public User(String id, String firstPassword, String educationalEmail, UserRole userRole, boolean isSentToAuthServer) {
+    public UserDto(String id, String educationalEmail, UserRole userRole, boolean isSentToAuthServer) {
         this.id = id;
-        this.firstPassword = firstPassword;
         this.educationalEmail = educationalEmail;
         this.userRole = userRole;
         this.isSentToAuthServer = isSentToAuthServer;
@@ -29,10 +24,6 @@ public class User {
 
     public String getId() {
         return id;
-    }
-
-    public String getFirstPassword() {
-        return firstPassword;
     }
 
     public String getEducationalEmail() {
@@ -51,20 +42,19 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return isSentToAuthServer == user.isSentToAuthServer && Objects.equals(id, user.id) && Objects.equals(firstPassword, user.firstPassword) && Objects.equals(educationalEmail, user.educationalEmail) && userRole == user.userRole;
+        UserDto userDto = (UserDto) o;
+        return isSentToAuthServer == userDto.isSentToAuthServer && Objects.equals(id, userDto.id) && Objects.equals(educationalEmail, userDto.educationalEmail) && userRole == userDto.userRole;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstPassword, educationalEmail, userRole, isSentToAuthServer);
+        return Objects.hash(id, educationalEmail, userRole, isSentToAuthServer);
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserDto{" +
                 "id='" + id + '\'' +
-                ", firstPassword='" + firstPassword + '\'' +
                 ", educationalEmail='" + educationalEmail + '\'' +
                 ", userRole=" + userRole +
                 ", isSentToAuthServer=" + isSentToAuthServer +

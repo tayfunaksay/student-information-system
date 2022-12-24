@@ -1,24 +1,17 @@
 package com.studentinformationsystem.registrarservice.dto.user;
 
+import com.studentinformationsystem.registrarservice.model.UserRole;
+
 public class UpdateUserRequest {
     private String id;
-    private String password;
-    private String educationalEmail;
-    private String staffIdWhoSendRequest;
+
+    private UserRole userRole;
 
     public String getId() {
         return id;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEducationalEmail() {
-        return educationalEmail;
-    }
-
-    public String getStaffIdWhoSendRequest() {
-        return staffIdWhoSendRequest;
+    public UserRole getUserRole() {
+        return userRole;
     }
 }

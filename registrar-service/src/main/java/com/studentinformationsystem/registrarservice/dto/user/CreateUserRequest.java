@@ -1,25 +1,38 @@
 package com.studentinformationsystem.registrarservice.dto.user;
 
+import com.studentinformationsystem.registrarservice.model.UserRole;
+import lombok.Builder;
+
+@Builder
 public class CreateUserRequest {
+    private String id;
+    private String firstName;
+    private String lastName;
+    private UserRole userRole;
 
-    private String roleId;
-    private String password;
-    private String educationalEmail;
-    private String staffIdWhoSendRequest;
-
-    public String getRoleId() {
-        return roleId;
+    public CreateUserRequest() {
     }
 
-    public String getPassword() {
-        return password;
+    public CreateUserRequest(String id, String firstName, String lastName, UserRole userRole) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userRole = userRole;
     }
 
-    public String getEducationalEmail() {
-        return educationalEmail;
+    public String getId() {
+        return id;
     }
 
-    public String getStaffIdWhoSendRequest() {
-        return staffIdWhoSendRequest;
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 }

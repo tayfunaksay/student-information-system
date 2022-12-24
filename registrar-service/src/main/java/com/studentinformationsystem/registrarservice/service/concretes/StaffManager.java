@@ -6,7 +6,9 @@ import com.studentinformationsystem.registrarservice.dto.staff.UpdateStaffReques
 import com.studentinformationsystem.registrarservice.exception.StaffNotFoundException;
 import com.studentinformationsystem.registrarservice.repository.StaffRepository;
 import com.studentinformationsystem.registrarservice.service.StaffService;
+import com.studentinformationsystem.registrarservice.service.UserService;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.StaffMapper;
+import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.UserMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,15 +17,21 @@ import java.util.List;
 public class StaffManager implements StaffService {
     private final StaffRepository staffRepository;
     private final StaffMapper staffMapper;
+    private final UserService userService;
+    private final UserMapper userMapper;
 
-    public StaffManager(StaffRepository staffRepository, StaffMapper staffMapper) {
+    public StaffManager(StaffRepository staffRepository, StaffMapper staffMapper, UserService userService, UserMapper userMapper) {
         this.staffRepository = staffRepository;
         this.staffMapper = staffMapper;
+        this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     @Override
     public StaffDto create(CreateStaffRequest request) {
-        return staffMapper.toStaffDto(staffRepository.save(staffMapper.toStaff(request)));
+        StaffDto createdStaff=staffMapper.toStaffDto(staffRepository.save(staffMapper.toStaff(request)));
+        userService.create(userMapper.toCreateUserRequest(createdStaff));
+        return createdStaff;
     }
 
     @Override

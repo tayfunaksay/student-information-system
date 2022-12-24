@@ -5,6 +5,7 @@ import com.studentinformationsystem.registrarservice.dto.instructor.InstructorDt
 import com.studentinformationsystem.registrarservice.dto.instructor.UpdateInstructorRequest;
 import com.studentinformationsystem.registrarservice.model.Department;
 import com.studentinformationsystem.registrarservice.model.Instructor;
+import com.studentinformationsystem.registrarservice.utility.mailGenerator.EducationalMailGenerator;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.DepartmentMapper;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.DetailMapper;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.InstructorMapper;
@@ -48,7 +49,7 @@ public class InstructorConverter implements InstructorMapper {
         return Instructor.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
-                .educationalEmail(request.getEducationalEmail())
+                .educationalEmail(EducationalMailGenerator.generate(request.getFirstName(),request.getLastName()))
                 .isAvailableForOtherDepartment(request.isAvailableForOtherDepartment())
                 .department(Department.builder()
                         .id(request.getDepartmentId())

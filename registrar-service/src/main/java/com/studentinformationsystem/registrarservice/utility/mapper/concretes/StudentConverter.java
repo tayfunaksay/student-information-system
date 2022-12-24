@@ -6,6 +6,7 @@ import com.studentinformationsystem.registrarservice.dto.student.UpdateStudentRe
 import com.studentinformationsystem.registrarservice.model.Department;
 import com.studentinformationsystem.registrarservice.model.Student;
 import com.studentinformationsystem.registrarservice.service.DepartmentService;
+import com.studentinformationsystem.registrarservice.utility.mailGenerator.EducationalMailGenerator;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.DepartmentMapper;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.DetailMapper;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.StudentMapper;
@@ -52,7 +53,7 @@ public class StudentConverter implements StudentMapper {
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .studentNumber(request.getStudentNumber())
-                .educationalEmail(request.getEducationalEmail())
+                .educationalEmail(EducationalMailGenerator.generate(request.getFirstName(),request.getLastName()))
                 .emailAddress(request.getEmailAddress())
                 .department(departmentMapper.toDepartment(departmentService.getById(request.getDepartmentId())))
                 .detail(detailMapper.toDetail(request.getDetail()))

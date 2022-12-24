@@ -6,7 +6,9 @@ import com.studentinformationsystem.registrarservice.dto.instructor.UpdateInstru
 import com.studentinformationsystem.registrarservice.exception.InstructorNotFoundException;
 import com.studentinformationsystem.registrarservice.repository.InstructorRepository;
 import com.studentinformationsystem.registrarservice.service.InstructorService;
+import com.studentinformationsystem.registrarservice.service.UserService;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.InstructorMapper;
+import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.UserMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,15 +17,21 @@ import java.util.List;
 public class InstructorManger implements InstructorService {
     private final InstructorRepository instructorRepository;
     private final InstructorMapper instructorMapper;
+    private final UserService userService;
+    private final UserMapper userMapper;
 
-    public InstructorManger(InstructorRepository instructorRepository, InstructorMapper instructorMapper) {
+    public InstructorManger(InstructorRepository instructorRepository, InstructorMapper instructorMapper, UserService userService, UserMapper userMapper) {
         this.instructorRepository = instructorRepository;
         this.instructorMapper = instructorMapper;
+        this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     @Override
     public InstructorDto create(CreateInstructorRequest request) {
-        return instructorMapper.toInstructorDto(instructorRepository.save(instructorMapper.toInstructor(request)));
+        InstructorDto createdInstructor = instructorMapper.toInstructorDto(instructorRepository.save(instructorMapper.toInstructor(request)));
+        userService.create(userMapper.toCreateUserRequest(createdInstructor));
+        return createdInstructor;
     }
 
     @Override

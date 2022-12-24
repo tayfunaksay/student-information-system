@@ -5,6 +5,7 @@ import com.studentinformationsystem.registrarservice.dto.staff.StaffDto;
 import com.studentinformationsystem.registrarservice.dto.staff.UpdateStaffRequest;
 import com.studentinformationsystem.registrarservice.model.Department;
 import com.studentinformationsystem.registrarservice.model.Staff;
+import com.studentinformationsystem.registrarservice.utility.mailGenerator.EducationalMailGenerator;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.DepartmentMapper;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.DetailMapper;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.StaffMapper;
@@ -46,7 +47,7 @@ public class StaffConverter implements StaffMapper {
         return Staff.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
-                .educationalEmail(request.getEducationalEmail())
+                .educationalEmail(EducationalMailGenerator.generate(request.getFirstName(),request.getLastName()))
                 .detail(detailMapper.toDetail(request.getDetail()))
                 .department(Department.builder()
                         .id(request.getDepartmentId())

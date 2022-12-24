@@ -6,7 +6,9 @@ import com.studentinformationsystem.registrarservice.dto.student.UpdateStudentRe
 import com.studentinformationsystem.registrarservice.exception.StudentNotFoundException;
 import com.studentinformationsystem.registrarservice.repository.StudentRepository;
 import com.studentinformationsystem.registrarservice.service.StudentService;
+import com.studentinformationsystem.registrarservice.service.UserService;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.StudentMapper;
+import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.UserMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,16 +17,21 @@ import java.util.List;
 public class StudentManager implements StudentService {
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
+    private final UserService userService;
+    private final UserMapper userMapper;
 
-    public StudentManager(StudentRepository studentRepository, StudentMapper studentMapper) {
+    public StudentManager(StudentRepository studentRepository, StudentMapper studentMapper, UserService userService, UserMapper userMapper) {
         this.studentRepository = studentRepository;
         this.studentMapper = studentMapper;
+        this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     @Override
     public StudentDto create(CreateStudentRequest request) {
-
-        return studentMapper.toStudentDto(studentRepository.save(studentMapper.toStudent(request)));
+        StudentDto createdStudent = studentMapper.toStudentDto(studentRepository.save(studentMapper.toStudent(request)));
+        userService.create(userMapper.toCreateUserRequest(createdStudent));
+        return createdStudent;
     }
 
     @Override
