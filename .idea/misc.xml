@@ -4,6 +4,14 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/registrar-service/pom.xml" />
+        <option value="$PROJECT_DIR$/student-service/pom.xml" />
+        <option value="$PROJECT_DIR$/course-service/pom.xml" />
+        <option value="$PROJECT_DIR$/instructor-service/pom.xml" />
+        <option value="$PROJECT_DIR$/detail-service/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/course-scheduling-service/pom.xml" />
+        <option value="$PROJECT_DIR$/course-registry-service/pom.xml" />
       </list>
     </option>
   </component>

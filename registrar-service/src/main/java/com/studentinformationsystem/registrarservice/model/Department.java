@@ -17,23 +17,14 @@ public class Department {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
-    private List<Course> courses;
+    private List<Classroom> classrooms;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
-    private List<Student> students;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
-    private List<Instructor> instructors;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
-    private List<Staff> staffs;
-
-    private long instructorIdOfHeadOfDepartment;
+    private String instructorIdOfHeadOfDepartment;
 
     private String name;
 
@@ -44,21 +35,9 @@ public class Department {
         super();
     }
 
-    public Department(String id,
-                      Faculty faculty,
-                      List<Course> courses,
-                      List<Student> students,
-                      List<Instructor> instructors,
-                      List<Staff> staffs,
-                      long instructorIdOfHeadOfDepartment,
-                      String name,
-                      String code) {
+    public Department(String id, Faculty faculty, String instructorIdOfHeadOfDepartment, String name, String code) {
         this.id = id;
         this.faculty = faculty;
-        this.courses = courses;
-        this.students = students;
-        this.instructors = instructors;
-        this.staffs = staffs;
         this.instructorIdOfHeadOfDepartment = instructorIdOfHeadOfDepartment;
         this.name = name;
         this.code = code;
@@ -72,19 +51,7 @@ public class Department {
         return faculty;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public List<Instructor> getInstructors() {
-        return instructors;
-    }
-
-    public long isInstructorIdOfHeadOfDepartment() {
+    public String getInstructorIdOfHeadOfDepartment() {
         return instructorIdOfHeadOfDepartment;
     }
 
@@ -97,27 +64,24 @@ public class Department {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, faculty, students, courses, instructors, instructorIdOfHeadOfDepartment, name, code);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
-        return instructorIdOfHeadOfDepartment == that.instructorIdOfHeadOfDepartment && Objects.equals(id, that.id) && Objects.equals(faculty, that.faculty) && Objects.equals(students, that.students) && Objects.equals(courses, that.courses) && Objects.equals(instructors, that.instructors) && Objects.equals(name, that.name) && Objects.equals(code, that.code);
+        return Objects.equals(id, that.id) && Objects.equals(faculty, that.faculty) && Objects.equals(instructorIdOfHeadOfDepartment, that.instructorIdOfHeadOfDepartment) && Objects.equals(name, that.name) && Objects.equals(code, that.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, faculty, instructorIdOfHeadOfDepartment, name, code);
     }
 
     @Override
     public String toString() {
         return "Department{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", faculty=" + faculty +
-                ", students=" + students +
-                ", courses=" + courses +
-                ", instructors=" + instructors +
-                ", instructorIdOfHeadOfDepartment=" + instructorIdOfHeadOfDepartment +
+                ", instructorIdOfHeadOfDepartment='" + instructorIdOfHeadOfDepartment + '\'' +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 '}';

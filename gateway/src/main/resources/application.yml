@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: student-service
+          uri: lb://student-service
+          predicates:
+            - Path=/v1/students/**
+
+        - id: instructor-service
+          uri: lb://instructor-service
+          predicates:
+            - Path=/v1/instructors/**
+
+        - id: course-service
+          uri: lb://course-service
+          predicates:
+            - Path=/v1/courses/**
+
+        - id: detail-service
+          uri: lb://detail-service
+          predicates:
+            - Path=/v1/details/**,/v1/cities/**,/v1/districts/**,/v1/addresses/**
+
+        - id: registrar-service
+          uri: lb://registrar-service
+          predicates:
+            - Path=/v1/department/**
+            - Path=/v1/faculty/**
+            - Path=/v1/semester/**
+      discovery:
+        locator:
+          enabled: true
+  zipkin:
+    base-url: http://localhost:9411
+server:
+  port: 8889
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: info

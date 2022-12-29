@@ -1,13 +1,9 @@
 package com.studentinformationsystem.registrarservice.utility.mapper.concretes;
 
-import com.studentinformationsystem.registrarservice.dto.instructor.InstructorDto;
-import com.studentinformationsystem.registrarservice.dto.staff.StaffDto;
-import com.studentinformationsystem.registrarservice.dto.student.StudentDto;
 import com.studentinformationsystem.registrarservice.dto.user.CreateUserRequest;
 import com.studentinformationsystem.registrarservice.dto.user.UpdateUserRequest;
 import com.studentinformationsystem.registrarservice.dto.user.UserDto;
 import com.studentinformationsystem.registrarservice.model.User;
-import com.studentinformationsystem.registrarservice.model.UserRole;
 import com.studentinformationsystem.registrarservice.utility.mailGenerator.EducationalMailGenerator;
 import com.studentinformationsystem.registrarservice.utility.mapper.abstracts.UserMapper;
 import com.studentinformationsystem.registrarservice.utility.passwordGenerator.FirstPasswordGenerator;
@@ -51,36 +47,6 @@ public class UserConverter implements UserMapper {
         return User.builder()
                 .id(request.getId())
                 .userRole(request.getUserRole())
-                .build();
-    }
-
-    @Override
-    public CreateUserRequest toCreateUserRequest(StudentDto createdStudentDto) {
-        return CreateUserRequest.builder()
-                .id(createdStudentDto.getId())
-                .firstName(createdStudentDto.getFirstName())
-                .lastName(createdStudentDto.getLastName())
-                .userRole(UserRole.STUDENT)
-                .build();
-    }
-
-    @Override
-    public CreateUserRequest toCreateUserRequest(InstructorDto createdInstructorDto) {
-        return CreateUserRequest.builder()
-                .id(createdInstructorDto.getId())
-                .firstName(createdInstructorDto.getFirstName())
-                .lastName(createdInstructorDto.getLastName())
-                .userRole(UserRole.INSTRUCTOR)
-                .build();
-    }
-
-    @Override
-    public CreateUserRequest toCreateUserRequest(StaffDto createdStaffDto) {
-        return CreateUserRequest.builder()
-                .id(createdStaffDto.getId())
-                .firstName(createdStaffDto.getFirstName())
-                .lastName(createdStaffDto.getLastName())
-                .userRole(UserRole.STAFF)
                 .build();
     }
 
