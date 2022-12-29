@@ -26,6 +26,7 @@ public class Course {
     private short theoreticalLessonHour;
     private short practicalLessonHour;
     private CourseType courseType;
+    private SemesterType semesterType;
     private String departmentId;
     private boolean isNeedProjectorAndComputer;
     private boolean isTherePreCourse;
@@ -33,17 +34,18 @@ public class Course {
     public Course() {
     }
 
-    public Course(String id, String departmentId, String originalName, String code, String turkishName, double courseCredit, short courseAKTS, short theoreticalLessonHour, short practicalLessonHour, CourseType courseType, boolean isNeedProjectorAndComputer, boolean isTherePreCourse) {
+    public Course(String id, String originalName, String turkishName, String code, double courseCredit, short courseAKTS, short theoreticalLessonHour, short practicalLessonHour, CourseType courseType, SemesterType semesterType, String departmentId, boolean isNeedProjectorAndComputer, boolean isTherePreCourse) {
         this.id = id;
-        this.departmentId = departmentId;
         this.originalName = originalName;
-        this.code = code;
         this.turkishName = turkishName;
+        this.code = code;
         this.courseCredit = courseCredit;
         this.courseAKTS = courseAKTS;
         this.theoreticalLessonHour = theoreticalLessonHour;
         this.practicalLessonHour = practicalLessonHour;
         this.courseType = courseType;
+        this.semesterType = semesterType;
+        this.departmentId = departmentId;
         this.isNeedProjectorAndComputer = isNeedProjectorAndComputer;
         this.isTherePreCourse = isTherePreCourse;
     }
@@ -52,20 +54,16 @@ public class Course {
         return id;
     }
 
-    public String getDepartmentId() {
-        return departmentId;
-    }
-
     public String getOriginalName() {
         return originalName;
     }
 
-    public String getCode() {
-        return code;
-    }
-
     public String getTurkishName() {
         return turkishName;
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public double getCourseCredit() {
@@ -88,6 +86,14 @@ public class Course {
         return courseType;
     }
 
+    public SemesterType getSemesterType() {
+        return semesterType;
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
+
     public boolean isNeedProjectorAndComputer() {
         return isNeedProjectorAndComputer;
     }
@@ -101,27 +107,28 @@ public class Course {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
-        return Double.compare(course.courseCredit, courseCredit) == 0 && courseAKTS == course.courseAKTS && theoreticalLessonHour == course.theoreticalLessonHour && practicalLessonHour == course.practicalLessonHour && isNeedProjectorAndComputer == course.isNeedProjectorAndComputer && isTherePreCourse == course.isTherePreCourse && Objects.equals(id, course.id) && Objects.equals(departmentId, course.departmentId) && Objects.equals(originalName, course.originalName) && Objects.equals(code, course.code) && Objects.equals(turkishName, course.turkishName) && courseType == course.courseType;
+        return Double.compare(course.courseCredit, courseCredit) == 0 && courseAKTS == course.courseAKTS && theoreticalLessonHour == course.theoreticalLessonHour && practicalLessonHour == course.practicalLessonHour && isNeedProjectorAndComputer == course.isNeedProjectorAndComputer && isTherePreCourse == course.isTherePreCourse && Objects.equals(id, course.id) && Objects.equals(originalName, course.originalName) && Objects.equals(turkishName, course.turkishName) && Objects.equals(code, course.code) && courseType == course.courseType && semesterType == course.semesterType && Objects.equals(departmentId, course.departmentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, departmentId, originalName, code, turkishName, courseCredit, courseAKTS, theoreticalLessonHour, practicalLessonHour, courseType, isNeedProjectorAndComputer, isTherePreCourse);
+        return Objects.hash(id, originalName, turkishName, code, courseCredit, courseAKTS, theoreticalLessonHour, practicalLessonHour, courseType, semesterType, departmentId, isNeedProjectorAndComputer, isTherePreCourse);
     }
 
     @Override
     public String toString() {
         return "Course{" +
                 "id='" + id + '\'' +
-                ", departmentId='" + departmentId + '\'' +
                 ", originalName='" + originalName + '\'' +
-                ", code='" + code + '\'' +
                 ", turkishName='" + turkishName + '\'' +
+                ", code='" + code + '\'' +
                 ", courseCredit=" + courseCredit +
                 ", courseAKTS=" + courseAKTS +
                 ", theoreticalLessonHour=" + theoreticalLessonHour +
                 ", practicalLessonHour=" + practicalLessonHour +
                 ", courseType=" + courseType +
+                ", semesterType=" + semesterType +
+                ", departmentId='" + departmentId + '\'' +
                 ", isNeedProjectorAndComputer=" + isNeedProjectorAndComputer +
                 ", isTherePreCourse=" + isTherePreCourse +
                 '}';

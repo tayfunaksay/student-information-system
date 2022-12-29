@@ -30,14 +30,13 @@ public class Department {
 
     private String code;
 
-
     public Department() {
-        super();
     }
 
-    public Department(String id, Faculty faculty, String instructorIdOfHeadOfDepartment, String name, String code) {
+    public Department(String id, Faculty faculty, List<Classroom> classrooms, String instructorIdOfHeadOfDepartment, String name, String code) {
         this.id = id;
         this.faculty = faculty;
+        this.classrooms = classrooms;
         this.instructorIdOfHeadOfDepartment = instructorIdOfHeadOfDepartment;
         this.name = name;
         this.code = code;
@@ -49,6 +48,10 @@ public class Department {
 
     public Faculty getFaculty() {
         return faculty;
+    }
+
+    public List<Classroom> getClassrooms() {
+        return classrooms;
     }
 
     public String getInstructorIdOfHeadOfDepartment() {
@@ -68,12 +71,12 @@ public class Department {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
-        return Objects.equals(id, that.id) && Objects.equals(faculty, that.faculty) && Objects.equals(instructorIdOfHeadOfDepartment, that.instructorIdOfHeadOfDepartment) && Objects.equals(name, that.name) && Objects.equals(code, that.code);
+        return Objects.equals(id, that.id) && Objects.equals(faculty, that.faculty) && Objects.equals(classrooms, that.classrooms) && Objects.equals(instructorIdOfHeadOfDepartment, that.instructorIdOfHeadOfDepartment) && Objects.equals(name, that.name) && Objects.equals(code, that.code);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, faculty, instructorIdOfHeadOfDepartment, name, code);
+        return Objects.hash(id, faculty, classrooms, instructorIdOfHeadOfDepartment, name, code);
     }
 
     @Override
@@ -81,6 +84,7 @@ public class Department {
         return "Department{" +
                 "id='" + id + '\'' +
                 ", faculty=" + faculty +
+                ", classrooms=" + classrooms +
                 ", instructorIdOfHeadOfDepartment='" + instructorIdOfHeadOfDepartment + '\'' +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +
