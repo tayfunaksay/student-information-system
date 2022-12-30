@@ -49,4 +49,10 @@ public class ClassroomManager implements ClassroomService {
         return classroomMapper.toClassroomDto(classroomRepository.findById(classroomId)
                 .orElseThrow(()-> new ClassroomNotFoundException("Classroom could not found by id: "+ classroomId)));
     }
+
+    @Override
+    public String getNameById(String classroomId) {
+        return classroomRepository.findNameById(classroomId)
+                .orElseThrow(()-> new ClassroomNotFoundException("Classroom could not found by id: "+ classroomId));
+    }
 }

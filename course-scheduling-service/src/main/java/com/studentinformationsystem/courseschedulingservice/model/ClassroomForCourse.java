@@ -22,9 +22,14 @@ public class ClassroomForCourse {
     public ClassroomForCourse() {
     }
 
-    public ClassroomForCourse(String courseId, String classroomId) {
+    public ClassroomForCourse(String id, String courseId, String classroomId) {
+        this.id = id;
         this.courseId = courseId;
         this.classroomId = classroomId;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getCourseId() {

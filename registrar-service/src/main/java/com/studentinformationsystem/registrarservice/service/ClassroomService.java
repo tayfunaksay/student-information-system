@@ -16,4 +16,6 @@ public interface ClassroomService {
     List<ClassroomDto> getAll();
 
     ClassroomDto getById(String classroomId);
+
+    String getNameById(String classroomId);
 }

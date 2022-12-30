@@ -43,4 +43,8 @@ public class ClassroomController {
     public ResponseEntity<ClassroomDto> getById(@PathVariable String classroomId) {
         return ResponseEntity.ok(classroomService.getById(classroomId));
     }
+    @GetMapping("/getName/{classroomId}")
+    public ResponseEntity<String> getNameById(@PathVariable String classroomId) {
+        return ResponseEntity.ok(classroomService.getNameById(classroomId));
+    }
 }
