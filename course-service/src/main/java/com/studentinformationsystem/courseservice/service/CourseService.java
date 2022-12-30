@@ -1,7 +1,6 @@
 package com.studentinformationsystem.courseservice.service;
 
 import com.studentinformationsystem.courseservice.dto.course.CourseDto;
-import com.studentinformationsystem.courseservice.dto.course.CourseNamesDto;
 import com.studentinformationsystem.courseservice.dto.course.CreateCourseRequest;
 import com.studentinformationsystem.courseservice.dto.course.UpdateCourseRequest;
 
@@ -17,5 +16,4 @@ public interface CourseService {
     List<CourseDto> getAll();
 
     CourseDto getById(String courseId);
-    CourseNamesDto getNamesById(String courseId);
 }

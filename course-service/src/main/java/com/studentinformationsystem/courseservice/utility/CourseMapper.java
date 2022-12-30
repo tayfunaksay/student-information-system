@@ -1,7 +1,6 @@
 package com.studentinformationsystem.courseservice.utility;
 
 import com.studentinformationsystem.courseservice.dto.course.CourseDto;
-import com.studentinformationsystem.courseservice.dto.course.CourseNamesDto;
 import com.studentinformationsystem.courseservice.dto.course.CreateCourseRequest;
 import com.studentinformationsystem.courseservice.dto.course.UpdateCourseRequest;
 import com.studentinformationsystem.courseservice.model.Course;
@@ -16,5 +15,4 @@ public interface CourseMapper {
     Course toCourse(CreateCourseRequest request);
 
     Course toCourse(UpdateCourseRequest request);
-    CourseNamesDto toCourseNamesDto (Course from);
 }

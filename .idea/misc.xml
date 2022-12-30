@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
         <option value="$PROJECT_DIR$/course-scheduling-service/pom.xml" />
         <option value="$PROJECT_DIR$/course-registry-service/pom.xml" />
+        <option value="$PROJECT_DIR$/operation-service/pom.xml" />
       </list>
     </option>
   </component>

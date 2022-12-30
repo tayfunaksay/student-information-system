@@ -5,6 +5,8 @@ import com.studentinformationsystem.courseschedulingservice.client.RegistrarServ
 import com.studentinformationsystem.courseschedulingservice.dto.classroomForCourse.ClassroomForCourseDto;
 import com.studentinformationsystem.courseschedulingservice.dto.classroomForCourse.CreateClassroomForCourseRequest;
 import com.studentinformationsystem.courseschedulingservice.dto.classroomForCourse.UpdateClassroomForCourseRequest;
+import com.studentinformationsystem.courseschedulingservice.dto.clientDtos.ClassroomDto;
+import com.studentinformationsystem.courseschedulingservice.dto.clientDtos.CourseDto;
 import com.studentinformationsystem.courseschedulingservice.exception.ClassroomForCourseNotFoundException;
 import com.studentinformationsystem.courseschedulingservice.model.ClassroomForCourse;
 import com.studentinformationsystem.courseschedulingservice.repository.ClassroomForCourseRepository;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class ClassroomForCourseManager implements ClassroomForCourseService {
@@ -31,21 +34,28 @@ public class ClassroomForCourseManager implements ClassroomForCourseService {
 
     @Override
     public ClassroomForCourseDto create(CreateClassroomForCourseRequest request) {
-        ClassroomForCourse created = repository.save(mapper.toClassroomForCourse(request));
+        ClassroomDto classroom = registrarServiceClient.getById(request.getClassroomId()).getBody();
+        CourseDto course = courseServiceClient.getById(request.getCourseId()).getBody();
+        ClassroomForCourseDto created = mapper.toClassroomForCourseDto(repository.save(mapper.toClassroomForCourse(request)));
         return ClassroomForCourseDto.builder()
                 .id(created.getId())
-                .courseName(Objects.requireNonNull(courseServiceClient.getNamesById(created.getCourseId()).getBody()).getOriginalName())
-                .classroomName(registrarServiceClient.getNameById(created.getClassroomId()).getBody())
+                .courseName(course.getOriginalName())
+                .classroomName(classroom.getCode())
                 .build();
     }
 
     @Override
     public ClassroomForCourseDto update(UpdateClassroomForCourseRequest request) {
-        if (repository.existsById(request.getId())){
-            return mapper.toClassroomForCourseDto(repository.save(mapper.toClassroomForCourse(request)));
-        }else {
+        if (repository.existsById(request.getId())) {
+            ClassroomForCourse created = repository.save(mapper.toClassroomForCourse(request));
+            return ClassroomForCourseDto.builder()
+                    .id(created.getId())
+                    .courseName(Objects.requireNonNull(courseServiceClient.getById(created.getCourseId()).getBody()).getOriginalName())
+                    .classroomName(registrarServiceClient.getById(created.getClassroomId()).getBody().getCode())
+                    .build();
+        } else {
             throw new ClassroomForCourseNotFoundException(
-                    "Classroom and Course match could not found to update by id: "+request.getId());
+                    "Classroom and Course match could not found to update by id: " + request.getId());
         }
     }
 
@@ -56,11 +66,26 @@ public class ClassroomForCourseManager implements ClassroomForCourseService {
 
     @Override
     public List<ClassroomForCourseDto> getAll() {
-        return mapper.toClassroomForCourseDtoList(repository.findAll());
+        List<ClassroomForCourse> created = repository.findAll();
+        return created.stream()
+                .map(classroomForCourse -> ClassroomForCourseDto.builder()
+                        .id(classroomForCourse.getId())
+                        .courseName(courseServiceClient.getById(classroomForCourse.getCourseId()).getBody().getOriginalName())
+                        .classroomName(registrarServiceClient.getById(classroomForCourse.getClassroomId()).getBody().getCode())
+                        .build())
+                .collect(Collectors.toList());
+
     }
 
     @Override
     public List<ClassroomForCourseDto> getAllAvailableClassroomWithCourseId(String courseId) {
-        return mapper.toClassroomForCourseDtoList(repository.findAllByCourseIdIs(courseId));
+        List<ClassroomForCourse> createdAvailable =repository.findAllByCourseIdIs(courseId);
+        return createdAvailable.stream()
+                .map(classroomForCourse -> ClassroomForCourseDto.builder()
+                        .id(classroomForCourse.getId())
+                        .courseName(courseServiceClient.getById(classroomForCourse.getCourseId()).getBody().getOriginalName())
+                        .classroomName(registrarServiceClient.getById(classroomForCourse.getClassroomId()).getBody().getCode())
+                        .build())
+                .collect(Collectors.toList());
     }
 }

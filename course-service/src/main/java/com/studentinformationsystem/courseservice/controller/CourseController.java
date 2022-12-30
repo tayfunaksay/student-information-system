@@ -1,7 +1,6 @@
 package com.studentinformationsystem.courseservice.controller;
 
 import com.studentinformationsystem.courseservice.dto.course.CourseDto;
-import com.studentinformationsystem.courseservice.dto.course.CourseNamesDto;
 import com.studentinformationsystem.courseservice.dto.course.CreateCourseRequest;
 import com.studentinformationsystem.courseservice.dto.course.UpdateCourseRequest;
 import com.studentinformationsystem.courseservice.service.CourseService;
@@ -40,10 +39,6 @@ public class CourseController {
     @GetMapping("/{courseId}")
     public ResponseEntity<CourseDto> getById(@PathVariable String courseId) {
         return ResponseEntity.ok(courseService.getById(courseId));
-    }
-    @GetMapping("/getName/{courseId}")
-    public ResponseEntity<CourseNamesDto> getNamesById(@PathVariable String courseId) {
-        return ResponseEntity.ok(courseService.getNamesById(courseId));
     }
 
 

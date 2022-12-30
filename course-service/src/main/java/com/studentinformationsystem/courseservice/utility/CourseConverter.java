@@ -1,7 +1,6 @@
 package com.studentinformationsystem.courseservice.utility;
 
 import com.studentinformationsystem.courseservice.dto.course.CourseDto;
-import com.studentinformationsystem.courseservice.dto.course.CourseNamesDto;
 import com.studentinformationsystem.courseservice.dto.course.CreateCourseRequest;
 import com.studentinformationsystem.courseservice.dto.course.UpdateCourseRequest;
 import com.studentinformationsystem.courseservice.model.Course;
@@ -73,11 +72,4 @@ public class CourseConverter implements CourseMapper {
                 .build();
     }
 
-    @Override
-    public CourseNamesDto toCourseNamesDto(Course from) {
-        return CourseNamesDto.builder()
-                .originalName(from.getOriginalName())
-                .turkishName(from.getTurkishName())
-                .build();
-    }
 }
