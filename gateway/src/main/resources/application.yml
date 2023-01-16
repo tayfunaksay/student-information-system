@@ -24,7 +24,7 @@ spring:
           predicates:
             - Path=/v1/details/**,/v1/cities/**,/v1/districts/**,/v1/addresses/**
 
-        - id: registrar-service
+        - id: operation-service
           uri: lb://registrar-service
           predicates:
             - Path=/v1/department/**

@@ -37,33 +37,16 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> emptyResultDataAccessExceptionHandler(EmptyResultDataAccessException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
-
-    @ExceptionHandler(ClassroomForCourseNotFoundException.class)
-    public ResponseEntity<?> classroomForCourseNotFoundExceptionHandler(ClassroomForCourseNotFoundException exception) {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
-    }
-    @ExceptionHandler(CourseForGradeNotFoundException.class)
-    public ResponseEntity<?> courseForGradeNotFoundExceptionHandler(CourseForGradeNotFoundException exception) {
+    @ExceptionHandler(ClassroomNotFoundException.class)
+    public ResponseEntity<?> classroomNotFoundExceptionHandler(ClassroomNotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(CourseHourNotFoundException.class)
     public ResponseEntity<?> courseHourNotFoundExceptionHandler(CourseHourNotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
-    @ExceptionHandler(DayNotFoundException.class)
-    public ResponseEntity<?> dayNotFoundExceptionHandler(DayNotFoundException exception) {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
-    }
-    @ExceptionHandler(GradeForDepartmentNotFoundException.class)
-    public ResponseEntity<?> gradeForDepartmentNotFoundExceptionHandler(GradeForDepartmentNotFoundException exception) {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
-    }
-    @ExceptionHandler(HourNotFoundException.class)
-    public ResponseEntity<?> hourNotFoundExceptionHandler(HourNotFoundException exception) {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
-    }
-    @ExceptionHandler(InstructorForCourseNotFoundException.class)
-    public ResponseEntity<?> instructorForCourseNotFoundExceptionHandler(InstructorForCourseNotFoundException exception) {
+    @ExceptionHandler(SemesterNotFoundException.class)
+    public ResponseEntity<?> semesterNotFoundExceptionHandler(SemesterNotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
