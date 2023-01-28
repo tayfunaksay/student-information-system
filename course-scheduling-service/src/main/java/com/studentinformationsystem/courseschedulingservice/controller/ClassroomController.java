@@ -3,7 +3,7 @@ package com.studentinformationsystem.courseschedulingservice.controller;
 import com.studentinformationsystem.courseschedulingservice.dto.classroom.ClassroomDto;
 import com.studentinformationsystem.courseschedulingservice.dto.classroom.CreateClassroomRequest;
 import com.studentinformationsystem.courseschedulingservice.dto.classroom.UpdateClassroomRequest;
-import com.studentinformationsystem.courseschedulingservice.service.abstracts.ClassroomService;
+import com.studentinformationsystem.courseschedulingservice.service.classroom.ClassroomService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,17 +34,13 @@ public class ClassroomController {
         return ResponseEntity.ok(classroomService.update(request));
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<List<ClassroomDto>> getAll() {
-        return ResponseEntity.ok(classroomService.getAll());
-    }
-
     @GetMapping("/{classroomId}")
     public ResponseEntity<ClassroomDto> getById(@PathVariable String classroomId) {
         return ResponseEntity.ok(classroomService.getById(classroomId));
     }
-    @GetMapping("/getName/{classroomId}")
-    public ResponseEntity<String> getNameById(@PathVariable String classroomId) {
-        return ResponseEntity.ok(classroomService.getNameById(classroomId));
+
+    @GetMapping("/getAllByDepartmentId/{departmentId}")
+    public ResponseEntity<List<ClassroomDto>> getAllByDepartmentId(@PathVariable String departmentId) {
+        return ResponseEntity.ok(classroomService.getAllByDepartmentId(departmentId));
     }
 }

@@ -49,4 +49,12 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> semesterNotFoundExceptionHandler(SemesterNotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(CourseNotFoundException.class)
+    public ResponseEntity<?> courseNotFoundExceptionHandler(CourseNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(OfferedCourseNotFoundException.class)
+    public ResponseEntity<?> offeredCourseNotFoundExceptionHandler(OfferedCourseNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

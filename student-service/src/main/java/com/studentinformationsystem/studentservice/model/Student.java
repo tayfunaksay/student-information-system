@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Builder;
 import org.hibernate.annotations.GenericGenerator;
+
 import java.util.Objects;
 
 @Builder
@@ -23,24 +24,25 @@ public class Student {
     private String educationalEmail;
     private String emailAddress;
     private String departmentId;
+    private ClassLevel classLevel;
     private String detailId;
     private String nationalIdentity;
     private String gender;
     private boolean isGraduated;
 
-
     public Student() {
     }
 
-    public Student(String id, String departmentId, String detailId, String studentNumber, String firstName, String lastName, String educationalEmail, String emailAddress, String nationalIdentity, String gender, boolean isGraduated) {
+    public Student(String id, String firstName, String lastName, String studentNumber, String educationalEmail, String emailAddress, String departmentId, ClassLevel classLevel, String detailId, String nationalIdentity, String gender, boolean isGraduated) {
         this.id = id;
-        this.departmentId = departmentId;
-        this.detailId = detailId;
-        this.studentNumber = studentNumber;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.studentNumber = studentNumber;
         this.educationalEmail = educationalEmail;
         this.emailAddress = emailAddress;
+        this.departmentId = departmentId;
+        this.classLevel = classLevel;
+        this.detailId = detailId;
         this.nationalIdentity = nationalIdentity;
         this.gender = gender;
         this.isGraduated = isGraduated;
@@ -48,18 +50,6 @@ public class Student {
 
     public String getId() {
         return id;
-    }
-
-    public String getDepartmentId() {
-        return departmentId;
-    }
-
-    public String getDetailId() {
-        return detailId;
-    }
-
-    public String getStudentNumber() {
-        return studentNumber;
     }
 
     public String getFirstName() {
@@ -70,12 +60,28 @@ public class Student {
         return lastName;
     }
 
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
     public String getEducationalEmail() {
         return educationalEmail;
     }
 
     public String getEmailAddress() {
         return emailAddress;
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
+
+    public ClassLevel getClassLevel() {
+        return classLevel;
+    }
+
+    public String getDetailId() {
+        return detailId;
     }
 
     public String getNationalIdentity() {
@@ -95,25 +101,26 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return isGraduated == student.isGraduated && Objects.equals(id, student.id) && Objects.equals(departmentId, student.departmentId) && Objects.equals(detailId, student.detailId) && Objects.equals(studentNumber, student.studentNumber) && Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName) && Objects.equals(educationalEmail, student.educationalEmail) && Objects.equals(emailAddress, student.emailAddress) && Objects.equals(nationalIdentity, student.nationalIdentity) && Objects.equals(gender, student.gender);
+        return isGraduated == student.isGraduated && Objects.equals(id, student.id) && Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName) && Objects.equals(studentNumber, student.studentNumber) && Objects.equals(educationalEmail, student.educationalEmail) && Objects.equals(emailAddress, student.emailAddress) && Objects.equals(departmentId, student.departmentId) && classLevel == student.classLevel && Objects.equals(detailId, student.detailId) && Objects.equals(nationalIdentity, student.nationalIdentity) && Objects.equals(gender, student.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, departmentId, detailId, studentNumber, firstName, lastName, educationalEmail, emailAddress, nationalIdentity, gender, isGraduated);
+        return Objects.hash(id, firstName, lastName, studentNumber, educationalEmail, emailAddress, departmentId, classLevel, detailId, nationalIdentity, gender, isGraduated);
     }
 
     @Override
     public String toString() {
         return "Student{" +
                 "id='" + id + '\'' +
-                ", departmentId='" + departmentId + '\'' +
-                ", detailId='" + detailId + '\'' +
-                ", studentNumber='" + studentNumber + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", studentNumber='" + studentNumber + '\'' +
                 ", educationalEmail='" + educationalEmail + '\'' +
                 ", emailAddress='" + emailAddress + '\'' +
+                ", departmentId='" + departmentId + '\'' +
+                ", classLevel=" + classLevel +
+                ", detailId='" + detailId + '\'' +
                 ", nationalIdentity='" + nationalIdentity + '\'' +
                 ", gender='" + gender + '\'' +
                 ", isGraduated=" + isGraduated +

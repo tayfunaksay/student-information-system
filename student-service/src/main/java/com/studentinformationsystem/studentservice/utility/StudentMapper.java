@@ -1,16 +1,13 @@
 package com.studentinformationsystem.studentservice.utility;
 
-import com.studentinformationsystem.studentservice.dto.CreateStudentRequest;
-import com.studentinformationsystem.studentservice.dto.StudentDto;
-import com.studentinformationsystem.studentservice.dto.UpdateStudentRequest;
+import com.studentinformationsystem.studentservice.dto.clientDto.DepartmentDto;
+import com.studentinformationsystem.studentservice.dto.student.CreateStudentRequest;
+import com.studentinformationsystem.studentservice.dto.student.StudentDto;
+import com.studentinformationsystem.studentservice.dto.student.UpdateStudentRequest;
 import com.studentinformationsystem.studentservice.model.Student;
 
-import java.util.List;
-
 public interface StudentMapper {
-    StudentDto toStudentDto(Student from);
-
-    List<StudentDto> toStudentDtoList(List<Student> from);
+    StudentDto toStudentDto(Student from, DepartmentDto departmentDto);
 
     Student toStudent(CreateStudentRequest request,String detailId,String educationalEmail);
 

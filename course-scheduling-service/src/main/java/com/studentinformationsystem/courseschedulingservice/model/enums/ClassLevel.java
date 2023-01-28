@@ -1,14 +1,25 @@
 package com.studentinformationsystem.courseschedulingservice.model.enums;
 
 public enum ClassLevel {
-    FIRST(1),
-    SECOND(2),
-    THIRD(3),
-    FOURTH(4);
-    private final int ClassLevelValue;
-    private
+    I(1, "Birinci Sınıf"),
+    II(2, "İkinci Sınıf"),
+    III(3, "Üçüncü Sınıf"),
+    IV(4, "Dördüncü Sınıf"),
+    V(5, "Beşinci Sınıf");
+    private final int classLevelValue;
+    private final String classLevelName;
 
-    ClassLevel(int classLevelValue) {
-        ClassLevelValue = classLevelValue;
+
+    ClassLevel(int classLevelValue, String classLevelName) {
+        this.classLevelValue = classLevelValue;
+        this.classLevelName = classLevelName;
+    }
+
+    public int getClassLevelValue() {
+        return classLevelValue;
+    }
+
+    public String getClassLevelName() {
+        return classLevelName;
     }
 }

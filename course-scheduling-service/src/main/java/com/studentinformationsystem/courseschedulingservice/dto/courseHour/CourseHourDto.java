@@ -1,28 +1,24 @@
 package com.studentinformationsystem.courseschedulingservice.dto.courseHour;
 
-import com.studentinformationsystem.courseschedulingservice.model.enums.Hour;
 import lombok.Builder;
 
 import java.util.Objects;
 
 @Builder
 public class CourseHourDto {
-    private Long id;
+    private String id;
     private String dayName;
-    private Hour hour;
-    private boolean isAvailable;
-
+    private String hour;
     public CourseHourDto() {
     }
 
-    public CourseHourDto(Long id, String dayName, Hour hour, boolean isAvailable) {
+    public CourseHourDto(String id, String dayName, String hour) {
         this.id = id;
         this.dayName = dayName;
         this.hour = hour;
-        this.isAvailable = isAvailable;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -30,12 +26,8 @@ public class CourseHourDto {
         return dayName;
     }
 
-    public Hour getHour() {
+    public String getHour() {
         return hour;
-    }
-
-    public boolean isAvailable() {
-        return isAvailable;
     }
 
     @Override
@@ -43,21 +35,20 @@ public class CourseHourDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CourseHourDto that = (CourseHourDto) o;
-        return isAvailable == that.isAvailable && Objects.equals(id, that.id) && Objects.equals(dayName, that.dayName) && hour == that.hour;
+        return Objects.equals(id, that.id) && Objects.equals(dayName, that.dayName) && Objects.equals(hour, that.hour);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, dayName, hour, isAvailable);
+        return Objects.hash(id, dayName, hour);
     }
 
     @Override
     public String toString() {
         return "CourseHourDto{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", dayName='" + dayName + '\'' +
-                ", hour=" + hour +
-                ", isAvailable=" + isAvailable +
+                ", hour='" + hour + '\'' +
                 '}';
     }
 }

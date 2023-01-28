@@ -6,12 +6,12 @@ import com.studentinformationsystem.courseschedulingservice.model.enums.Hour;
 import java.util.Objects;
 
 public class UpdateCourseHourRequest {
-    private Long id;
+    private String id;
     private DayName dayName;
     private Hour hour;
     private boolean isAvailable;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -43,7 +43,7 @@ public class UpdateCourseHourRequest {
     @Override
     public String toString() {
         return "UpdateCourseHourRequest{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", dayName=" + dayName +
                 ", hour=" + hour +
                 ", isAvailable=" + isAvailable +

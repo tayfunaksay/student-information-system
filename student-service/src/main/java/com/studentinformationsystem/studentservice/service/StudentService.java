@@ -1,8 +1,8 @@
 package com.studentinformationsystem.studentservice.service;
 
-import com.studentinformationsystem.studentservice.dto.CreateStudentRequest;
-import com.studentinformationsystem.studentservice.dto.StudentDto;
-import com.studentinformationsystem.studentservice.dto.UpdateStudentRequest;
+import com.studentinformationsystem.studentservice.dto.student.CreateStudentRequest;
+import com.studentinformationsystem.studentservice.dto.student.StudentDto;
+import com.studentinformationsystem.studentservice.dto.student.UpdateStudentRequest;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public interface StudentService {
 
     StudentDto update(UpdateStudentRequest request);
 
-    List<StudentDto> getAll();
+    List<StudentDto> getAllByDepartmentId(String departmentId);
 
     StudentDto getById(String studentId);
 }

@@ -25,8 +25,9 @@ public class Semester {
     public Semester() {
     }
 
-    public Semester(String id, String name, ClassLevel classLevel, SemesterType semesterType) {
+    public Semester(String id, List<OfferedCourse> offeredCourseList, String name, ClassLevel classLevel, SemesterType semesterType) {
         this.id = id;
+        this.offeredCourseList = offeredCourseList;
         this.name = name;
         this.classLevel = classLevel;
         this.semesterType = semesterType;
@@ -34,6 +35,10 @@ public class Semester {
 
     public String getId() {
         return id;
+    }
+
+    public List<OfferedCourse> getOfferedCourseList() {
+        return offeredCourseList;
     }
 
     public String getName() {
@@ -53,18 +58,19 @@ public class Semester {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Semester semester = (Semester) o;
-        return Objects.equals(id, semester.id) && Objects.equals(name, semester.name) && classLevel == semester.classLevel && semesterType == semester.semesterType;
+        return Objects.equals(id, semester.id) && Objects.equals(offeredCourseList, semester.offeredCourseList) && Objects.equals(name, semester.name) && classLevel == semester.classLevel && semesterType == semester.semesterType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, classLevel, semesterType);
+        return Objects.hash(id, offeredCourseList, name, classLevel, semesterType);
     }
 
     @Override
     public String toString() {
         return "Semester{" +
                 "id='" + id + '\'' +
+                ", offeredCourseList=" + offeredCourseList +
                 ", name='" + name + '\'' +
                 ", classLevel=" + classLevel +
                 ", semesterType=" + semesterType +

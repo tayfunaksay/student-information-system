@@ -3,7 +3,7 @@ package com.studentinformationsystem.courseschedulingservice.controller;
 import com.studentinformationsystem.courseschedulingservice.dto.semester.CreateSemesterRequest;
 import com.studentinformationsystem.courseschedulingservice.dto.semester.SemesterDto;
 import com.studentinformationsystem.courseschedulingservice.dto.semester.UpdateSemesterRequest;
-import com.studentinformationsystem.courseschedulingservice.service.abstracts.SemesterService;
+import com.studentinformationsystem.courseschedulingservice.service.semester.SemesterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

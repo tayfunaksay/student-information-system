@@ -1,12 +1,10 @@
 package com.studentinformationsystem.courseschedulingservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Builder;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
 import java.util.Objects;
 
 @Builder
@@ -17,6 +15,8 @@ public class Classroom {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
+    @OneToMany(mappedBy = "classroom")
+    private List<OfferedCourse> offeredCourseList;
     private String departmentId;
     private String code;
     private int capacity;
@@ -26,8 +26,9 @@ public class Classroom {
 
     }
 
-    public Classroom(String id, String departmentId, String code, int capacity, boolean isThereProjectorAndComputer) {
+    public Classroom(String id, List<OfferedCourse> offeredCourseList, String departmentId, String code, int capacity, boolean isThereProjectorAndComputer) {
         this.id = id;
+        this.offeredCourseList = offeredCourseList;
         this.departmentId = departmentId;
         this.code = code;
         this.capacity = capacity;
@@ -36,6 +37,10 @@ public class Classroom {
 
     public String getId() {
         return id;
+    }
+
+    public List<OfferedCourse> getOfferedCourseList() {
+        return offeredCourseList;
     }
 
     public String getDepartmentId() {
@@ -59,18 +64,19 @@ public class Classroom {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Classroom classroom = (Classroom) o;
-        return capacity == classroom.capacity && isThereProjectorAndComputer == classroom.isThereProjectorAndComputer && Objects.equals(id, classroom.id) && Objects.equals(departmentId, classroom.departmentId) && Objects.equals(code, classroom.code);
+        return capacity == classroom.capacity && isThereProjectorAndComputer == classroom.isThereProjectorAndComputer && Objects.equals(id, classroom.id) && Objects.equals(offeredCourseList, classroom.offeredCourseList) && Objects.equals(departmentId, classroom.departmentId) && Objects.equals(code, classroom.code);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, departmentId, code, capacity, isThereProjectorAndComputer);
+        return Objects.hash(id, offeredCourseList, departmentId, code, capacity, isThereProjectorAndComputer);
     }
 
     @Override
     public String toString() {
         return "Classroom{" +
                 "id='" + id + '\'' +
+                ", offeredCourseList=" + offeredCourseList +
                 ", departmentId='" + departmentId + '\'' +
                 ", code='" + code + '\'' +
                 ", capacity=" + capacity +

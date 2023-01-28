@@ -1,8 +1,8 @@
 package com.studentinformationsystem.studentservice.controller;
 
-import com.studentinformationsystem.studentservice.dto.CreateStudentRequest;
-import com.studentinformationsystem.studentservice.dto.StudentDto;
-import com.studentinformationsystem.studentservice.dto.UpdateStudentRequest;
+import com.studentinformationsystem.studentservice.dto.student.CreateStudentRequest;
+import com.studentinformationsystem.studentservice.dto.student.StudentDto;
+import com.studentinformationsystem.studentservice.dto.student.UpdateStudentRequest;
 import com.studentinformationsystem.studentservice.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

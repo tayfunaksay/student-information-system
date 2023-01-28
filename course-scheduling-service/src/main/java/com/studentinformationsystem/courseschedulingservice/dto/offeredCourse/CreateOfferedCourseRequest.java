@@ -1,27 +1,49 @@
 package com.studentinformationsystem.courseschedulingservice.dto.offeredCourse;
 
+import com.studentinformationsystem.courseschedulingservice.model.enums.Branch;
+
 import java.util.Objects;
 
 public class CreateOfferedCourseRequest {
-    private String courseName;
-    private String departmentName;
-    private String semesterName;
-    private String instructorName;
+    private String courseId;
+    private String classroomId;
+    private String courseHourId;
+    private String semesterId;
+    private String departmentId;
+    private String instructorId;
+    private Branch branch;
+    private int capacity;
 
-    public String getCourseName() {
-        return courseName;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    public String getClassroomId() {
+        return classroomId;
     }
 
-    public String getSemesterName() {
-        return semesterName;
+    public String getCourseHourId() {
+        return courseHourId;
     }
 
-    public String getInstructorName() {
-        return instructorName;
+    public String getSemesterId() {
+        return semesterId;
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
+
+    public String getInstructorId() {
+        return instructorId;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 
     @Override
@@ -29,21 +51,25 @@ public class CreateOfferedCourseRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CreateOfferedCourseRequest that = (CreateOfferedCourseRequest) o;
-        return Objects.equals(courseName, that.courseName) && Objects.equals(departmentName, that.departmentName) && Objects.equals(semesterName, that.semesterName) && Objects.equals(instructorName, that.instructorName);
+        return capacity == that.capacity && Objects.equals(courseId, that.courseId) && Objects.equals(classroomId, that.classroomId) && Objects.equals(courseHourId, that.courseHourId) && Objects.equals(semesterId, that.semesterId) && Objects.equals(departmentId, that.departmentId) && Objects.equals(instructorId, that.instructorId) && branch == that.branch;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(courseName, departmentName, semesterName, instructorName);
+        return Objects.hash(courseId, classroomId, courseHourId, semesterId, departmentId, instructorId, branch, capacity);
     }
 
     @Override
     public String toString() {
         return "CreateOfferedCourseRequest{" +
-                "courseName='" + courseName + '\'' +
-                ", departmentName='" + departmentName + '\'' +
-                ", semesterName='" + semesterName + '\'' +
-                ", instructorName='" + instructorName + '\'' +
+                "courseId='" + courseId + '\'' +
+                ", classroomId='" + classroomId + '\'' +
+                ", courseHourId='" + courseHourId + '\'' +
+                ", semesterId='" + semesterId + '\'' +
+                ", departmentId='" + departmentId + '\'' +
+                ", instructorId='" + instructorId + '\'' +
+                ", branch=" + branch +
+                ", capacity=" + capacity +
                 '}';
     }
 }

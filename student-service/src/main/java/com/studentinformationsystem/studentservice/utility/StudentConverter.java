@@ -1,18 +1,16 @@
 package com.studentinformationsystem.studentservice.utility;
 
-import com.studentinformationsystem.studentservice.dto.CreateStudentRequest;
-import com.studentinformationsystem.studentservice.dto.StudentDto;
-import com.studentinformationsystem.studentservice.dto.UpdateStudentRequest;
+import com.studentinformationsystem.studentservice.dto.clientDto.DepartmentDto;
+import com.studentinformationsystem.studentservice.dto.student.CreateStudentRequest;
+import com.studentinformationsystem.studentservice.dto.student.StudentDto;
+import com.studentinformationsystem.studentservice.dto.student.UpdateStudentRequest;
 import com.studentinformationsystem.studentservice.model.Student;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class StudentConverter implements StudentMapper {
     @Override
-    public StudentDto toStudentDto(Student from) {
+    public StudentDto toStudentDto(Student from, DepartmentDto departmentDto) {
         return StudentDto.builder()
                 .id(from.getId())
                 .firstName(from.getFirstName())
@@ -20,19 +18,13 @@ public class StudentConverter implements StudentMapper {
                 .studentNumber(from.getStudentNumber())
                 .educationalEmail(from.getEducationalEmail())
                 .emailAddress(from.getEmailAddress())
-                .departmentId(from.getDepartmentId())
+                .departmentName(departmentDto.getName())
+                .classLevel(from.getClassLevel())
                 .detailId(from.getDetailId())
                 .nationalIdentity(from.getNationalIdentity())
                 .gender(from.getGender())
                 .isGraduated(from.isGraduated())
                 .build();
-    }
-
-    @Override
-    public List<StudentDto> toStudentDtoList(List<Student> from) {
-        return from.stream()
-                .map(student -> toStudentDto(student))
-                .collect(Collectors.toList());
     }
 
     @Override
