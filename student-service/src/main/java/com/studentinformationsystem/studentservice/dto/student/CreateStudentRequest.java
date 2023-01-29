@@ -1,7 +1,9 @@
 package com.studentinformationsystem.studentservice.dto.student;
 
-import java.util.Objects;
+import lombok.Builder;
 
+import java.util.Objects;
+@Builder
 public class CreateStudentRequest {
     private String firstName;
     private String lastName;
@@ -10,6 +12,19 @@ public class CreateStudentRequest {
     private String departmentId;
     private String nationalIdentity;
     private String gender;
+
+    public CreateStudentRequest() {
+    }
+
+    public CreateStudentRequest(String firstName, String lastName, String studentNumber, String emailAddress, String departmentId, String nationalIdentity, String gender) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.studentNumber = studentNumber;
+        this.emailAddress = emailAddress;
+        this.departmentId = departmentId;
+        this.nationalIdentity = nationalIdentity;
+        this.gender = gender;
+    }
 
     public String getFirstName() {
         return firstName;

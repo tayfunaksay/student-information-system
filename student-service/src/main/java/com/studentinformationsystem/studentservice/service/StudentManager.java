@@ -33,7 +33,7 @@ public class StudentManager implements StudentService {
     }
 
     // Her create işleminde detail-service te createDefaultDetail() metodu ile boş bir detail yaratılıyor.
-    // Bu metod geriye sadece ResponceEntitiy<String detailId> dönüyor
+    // Bu metod geriye ResponceEntitiy<DepartmentDto> dönüyor
     // Yani detail bilgileri daha sonra update edilmek üzere boş bir şekilde yaratılıyor.
 
     @Override
@@ -64,7 +64,7 @@ public class StudentManager implements StudentService {
     @Override
     public List<StudentDto> getAllByDepartmentId(String departmentId) {
         departmentDto=departmentServiceClient.getById(departmentId).getBody();
-        return studentRepository.findAllByDepartmentIdAndGraduatedFalse().parallelStream()
+        return studentRepository.findAllByDepartmentIdAndGraduatedFalse(departmentId).parallelStream()
                 .map(student -> studentMapper.toStudentDto(student,departmentDto))
                 .collect(Collectors.toList());
     }

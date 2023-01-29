@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, String> {
     @Query("select s from Student s where s.departmentId = ?1 and s.isGraduated = false")
-    List<Student> findAllByDepartmentIdAndGraduatedFalse();
+    List<Student> findAllByDepartmentIdAndGraduatedFalse(String departmentId);
     @Query("select s from Student s where s.id = ?1 and s.isGraduated = false")
     Optional<Student> findByIdAndGraduatedFalse(String studentId);
 }

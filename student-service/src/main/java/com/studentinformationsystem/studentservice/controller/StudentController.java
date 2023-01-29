@@ -4,6 +4,7 @@ import com.studentinformationsystem.studentservice.dto.student.CreateStudentRequ
 import com.studentinformationsystem.studentservice.dto.student.StudentDto;
 import com.studentinformationsystem.studentservice.dto.student.UpdateStudentRequest;
 import com.studentinformationsystem.studentservice.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class StudentController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<StudentDto> create(@RequestBody CreateStudentRequest request) {
+    public ResponseEntity<StudentDto> create(@Valid @RequestBody CreateStudentRequest request) {
         return ResponseEntity.ok(studentService.create(request));
     }
 
@@ -36,9 +37,9 @@ public class StudentController {
         return ResponseEntity.ok(studentService.update(request));
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<List<StudentDto>> getAll() {
-        return ResponseEntity.ok(studentService.getAll());
+    @GetMapping("/getAllByDepartmentId/{departmentId}")
+    public ResponseEntity<List<StudentDto>> getAllByDepartmentId(@PathVariable String departmentId) {
+        return ResponseEntity.ok(studentService.getAllByDepartmentId(departmentId));
     }
 
     @GetMapping("/{studentId}")

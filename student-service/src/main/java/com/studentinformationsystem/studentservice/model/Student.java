@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Builder;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -20,12 +23,18 @@ public class Student {
     private String id;
     private String firstName;
     private String lastName;
+    @Max(10)
+    @Min(10)
     private String studentNumber;
+    @Email
     private String educationalEmail;
+    @Email
     private String emailAddress;
     private String departmentId;
     private ClassLevel classLevel;
     private String detailId;
+    @Max(11)
+    @Min(11)
     private String nationalIdentity;
     private String gender;
     private boolean isGraduated;
