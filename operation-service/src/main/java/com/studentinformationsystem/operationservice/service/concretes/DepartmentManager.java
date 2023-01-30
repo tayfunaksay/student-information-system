@@ -34,16 +34,17 @@ public class DepartmentManager implements DepartmentService {
 
     @Override
     public DepartmentDto update(UpdateDepartmentRequest request) {
-        if (departmentRepository.findById(request.getId()).isEmpty()) {
-            throw new DepartmentNotFoundException("Department could not found by id: " + request.getId());
-        } else {
+        if (departmentRepository.existsById(request.getId())) {
             return departmentMapper.toDepartmentDto(departmentRepository.save(departmentMapper.toDepartment(request)));
+        } else {
+            throw new DepartmentNotFoundException("Department could not found by id: " + request.getId());
+
         }
     }
 
     @Override
-    public List<DepartmentDto> getAll() {
-        return departmentMapper.toDepartmentDtoList(departmentRepository.findAll());
+    public List<DepartmentDto> getAllByFacultyId(String facultyId) {
+        return departmentMapper.toDepartmentDtoList(departmentRepository.findAllByFacultyId(facultyId));
     }
 
     @Override

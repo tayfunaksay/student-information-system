@@ -35,9 +35,9 @@ public class DepartmentController {
         return ResponseEntity.ok(departmentService.update(request));
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<List<DepartmentDto>> getAll() {
-        return ResponseEntity.ok(departmentService.getAll());
+    @GetMapping("/getAllByFacultyId")
+    public ResponseEntity<List<DepartmentDto>> getAllByFacultyId(@PathVariable String facultyId) {
+        return ResponseEntity.ok(departmentService.getAllByFacultyId(facultyId));
     }
 
     @GetMapping("/{departmentId}")

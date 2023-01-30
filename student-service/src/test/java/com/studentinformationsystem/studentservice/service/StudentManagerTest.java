@@ -32,7 +32,6 @@ class StudentManagerTest {
 
     @BeforeEach
     void setUp() {
-        studentManager = Mockito.mock(StudentManager.class);
         studentRepository = Mockito.mock(StudentRepository.class);
         studentMapper = Mockito.mock(StudentMapper.class);
         detailServiceClient = Mockito.mock(DetailServiceClient.class);
@@ -42,7 +41,7 @@ class StudentManagerTest {
     }
 
     @Test
-    public void testCreate_whenCreateCalledWithValidRequest_itShouldReturnCreatedStudentDto() {
+    public void testCreate_whenRequestValid_itShouldReturnCreatedStudentDto() {
         String detailId = "detail1";
 
         DepartmentDto departmentDto = DepartmentDto.builder()
@@ -136,7 +135,7 @@ class StudentManagerTest {
     }
 
     @Test
-    public void testUpdate_whenUpdateCalledWithValidStudentId_itShouldReturnUpdatedStudentDto() {
+    public void testUpdate_whenStudentIdExists_itShouldReturnUpdatedStudentDto() {
         String detailId = "detail1";
 
         DepartmentDto departmentDto = DepartmentDto.builder()
@@ -226,7 +225,7 @@ class StudentManagerTest {
     }
 
     @Test
-    public void testUpdate_whenUpdateCalledWithDoesNotExistStudentId_itShouldThrowStudentNotFoundException() {
+    public void testUpdate_whenStudentIdDoesNotExist_itShouldThrowStudentNotFoundException() {
 
         UpdateStudentRequest updateStudentRequest = UpdateStudentRequest.builder()
                 .id("student1")
@@ -249,7 +248,7 @@ class StudentManagerTest {
     }
 
     @Test
-    public void testGetAllByDepartmentId_whenCalledWithExistDepartment_itShouldReturnListOfStudents() {
+    public void testGetAllByDepartmentId_whenCalledWithDepartmentId_itShouldReturnListOfStudents() {
         DepartmentDto departmentDto = DepartmentDto.builder()
                 .id("dep1")
                 .facultyDto(FacultyDto.builder()
@@ -339,7 +338,7 @@ class StudentManagerTest {
     }
 
     @Test
-    public void testGetById_whenCalledWithExistStudentId_itShouldReturnExpectedStudentDto() {
+    public void testGetById_whenStudentIdExist_itShouldReturnExpectedStudentDto() {
 
         DepartmentDto departmentDto = DepartmentDto.builder()
                 .id("dep1")
@@ -396,7 +395,7 @@ class StudentManagerTest {
         Mockito.verify(studentMapper).toStudentDto(student,departmentDto);
     }
     @Test
-    public void testGetById_whenCalledWithDoesNotExistStudentId_itShouldThrowStudentNotFoundException() {
+    public void testGetById_whenStudentIdDoesNotExist_itShouldThrowStudentNotFoundException() {
 
         Mockito.when(studentRepository.findByIdAndGraduatedFalse("student1"))
                 .thenReturn(Optional.empty());

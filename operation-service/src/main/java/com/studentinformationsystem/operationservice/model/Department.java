@@ -19,8 +19,6 @@ public class Department {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
-    private String instructorIdOfHeadOfDepartment;
-
     private String name;
 
     private String code;
@@ -28,10 +26,9 @@ public class Department {
     public Department() {
     }
 
-    public Department(String id, Faculty faculty, String instructorIdOfHeadOfDepartment, String name, String code) {
+    public Department(String id, Faculty faculty, String name, String code) {
         this.id = id;
         this.faculty = faculty;
-        this.instructorIdOfHeadOfDepartment = instructorIdOfHeadOfDepartment;
         this.name = name;
         this.code = code;
     }
@@ -42,10 +39,6 @@ public class Department {
 
     public Faculty getFaculty() {
         return faculty;
-    }
-
-    public String getInstructorIdOfHeadOfDepartment() {
-        return instructorIdOfHeadOfDepartment;
     }
 
     public String getName() {
@@ -61,12 +54,12 @@ public class Department {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
-        return Objects.equals(id, that.id) && Objects.equals(faculty, that.faculty) && Objects.equals(instructorIdOfHeadOfDepartment, that.instructorIdOfHeadOfDepartment) && Objects.equals(name, that.name) && Objects.equals(code, that.code);
+        return Objects.equals(id, that.id) && Objects.equals(faculty, that.faculty) && Objects.equals(name, that.name) && Objects.equals(code, that.code);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, faculty, instructorIdOfHeadOfDepartment, name, code);
+        return Objects.hash(id, faculty, name, code);
     }
 
     @Override
@@ -74,7 +67,6 @@ public class Department {
         return "Department{" +
                 "id='" + id + '\'' +
                 ", faculty=" + faculty +
-                ", instructorIdOfHeadOfDepartment='" + instructorIdOfHeadOfDepartment + '\'' +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 '}';

@@ -33,10 +33,10 @@ public class FacultyManager implements FacultyService {
 
     @Override
     public FacultyDto update(UpdateFacultyRequest request) {
-        if (facultyRepository.findById(request.getId()).isEmpty()) {
-            throw new FacultyNotFoundException("Faculty could not found by id: " + request.getId());
-        } else {
+        if (facultyRepository.existsById(request.getId())) {
             return facultyMapper.toFacultyDto(facultyRepository.save(facultyMapper.toFaculty(request)));
+        } else {
+            throw new FacultyNotFoundException("Faculty could not found by id: " + request.getId());
         }
     }
 

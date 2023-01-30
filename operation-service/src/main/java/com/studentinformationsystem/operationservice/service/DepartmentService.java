@@ -13,7 +13,7 @@ public interface DepartmentService {
 
     DepartmentDto update(UpdateDepartmentRequest request);
 
-    List<DepartmentDto> getAll();
+    List<DepartmentDto> getAllByFacultyId(String facultyId);
 
     DepartmentDto getById(String departmentId);
 }
