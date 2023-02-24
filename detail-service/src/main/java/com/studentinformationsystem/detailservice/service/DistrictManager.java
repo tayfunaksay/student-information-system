@@ -27,21 +27,21 @@ public class DistrictManager implements DistrictService {
 
     @Override
     public DistrictDto update(UpdateDistrictRequest request) {
-        if (districtRepository.existsById(request.getId())){
+        if (districtRepository.existsById(request.getId())) {
             return districtMapper.toDistrictDto(districtRepository.save(districtMapper.toDistrict(request)));
-        }else {
-            throw new DistrictNotFoundException("District could not found by id: " +request.getId());
+        } else {
+            throw new DistrictNotFoundException("District could not found by id: " + request.getId());
         }
     }
 
     @Override
-    public List<DistrictDto> getAll() {
-        return districtMapper.toDistrictDtoList(districtRepository.findAll());
+    public List<DistrictDto> getAllByCityId(String cityId) {
+        return districtMapper.toDistrictDtoList(districtRepository.findAllByCityId(cityId));
     }
 
     @Override
     public DistrictDto getById(String districtId) {
         return districtMapper.toDistrictDto(districtRepository.findById(districtId)
-                .orElseThrow(()-> new DistrictNotFoundException("District could not found by id: " + districtId)));
+                .orElseThrow(() -> new DistrictNotFoundException("District could not found by id: " + districtId)));
     }
 }

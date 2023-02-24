@@ -13,14 +13,16 @@ import com.studentinformationsystem.studentservice.model.Student;
 import com.studentinformationsystem.studentservice.repository.StudentRepository;
 import com.studentinformationsystem.studentservice.utility.StudentMapper;
 import com.studentinformationsystem.studentservice.utility.mailGenerator.EducationalMailGenerator;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 class StudentManagerTest {
     private StudentManager studentManager;
@@ -32,10 +34,10 @@ class StudentManagerTest {
 
     @BeforeEach
     void setUp() {
-        studentRepository = Mockito.mock(StudentRepository.class);
-        studentMapper = Mockito.mock(StudentMapper.class);
-        detailServiceClient = Mockito.mock(DetailServiceClient.class);
-        departmentServiceClient = Mockito.mock(DepartmentServiceClient.class);
+        studentRepository = mock(StudentRepository.class);
+        studentMapper = mock(StudentMapper.class);
+        detailServiceClient = mock(DetailServiceClient.class);
+        departmentServiceClient = mock(DepartmentServiceClient.class);
 
         studentManager = new StudentManager(studentRepository, studentMapper, detailServiceClient, departmentServiceClient);
     }
@@ -108,29 +110,29 @@ class StudentManagerTest {
                 .isGraduated(false)
                 .build();
 
-        Mockito.when(departmentServiceClient.getById("dep1"))
+        when(departmentServiceClient.getById("dep1"))
                 .thenReturn(ResponseEntity.of(Optional.of(departmentDto)));
 
-        Mockito.when(detailServiceClient.createDefaultDetail()).thenReturn(ResponseEntity.of(Optional.of(detailId)));
-        Mockito.when(studentMapper.toStudent(createStudentRequest,
+        when(detailServiceClient.createDefaultDetail()).thenReturn(ResponseEntity.of(Optional.of(detailId)));
+        when(studentMapper.toStudent(createStudentRequest,
                 detailId,
                 EducationalMailGenerator.generate(createStudentRequest.getFirstName(),
                         createStudentRequest.getLastName()))).thenReturn(studentToSave);
-        Mockito.when(studentRepository.save(studentToSave)).thenReturn(savedStudent);
-        Mockito.when(studentMapper.toStudentDto(savedStudent, departmentDto)).thenReturn(studentDto);
+        when(studentRepository.save(studentToSave)).thenReturn(savedStudent);
+        when(studentMapper.toStudentDto(savedStudent, departmentDto)).thenReturn(studentDto);
 
         StudentDto result = studentManager.create(createStudentRequest);
 
-        Assertions.assertEquals(result, studentDto);
+        assertEquals(result, studentDto);
 
-        Mockito.verify(departmentServiceClient).getById("dep1");
-        Mockito.verify(detailServiceClient).createDefaultDetail();
-        Mockito.verify(studentMapper).toStudent(createStudentRequest,
+        verify(departmentServiceClient).getById("dep1");
+        verify(detailServiceClient).createDefaultDetail();
+        verify(studentMapper).toStudent(createStudentRequest,
                 detailId,
                 EducationalMailGenerator
                         .generate(createStudentRequest.getFirstName(), createStudentRequest.getLastName()));
-        Mockito.verify(studentRepository).save(studentToSave);
-        Mockito.verify(studentMapper).toStudentDto(savedStudent, departmentDto);
+        verify(studentRepository).save(studentToSave);
+        verify(studentMapper).toStudentDto(savedStudent, departmentDto);
 
     }
 
@@ -202,25 +204,25 @@ class StudentManagerTest {
                 .isGraduated(false)
                 .build();
 
-        Mockito.when(studentRepository.existsById(updateStudentRequest.getId())).thenReturn(true);
+        when(studentRepository.existsById(updateStudentRequest.getId())).thenReturn(true);
 
-        Mockito.when(departmentServiceClient.getById("dep1"))
+        when(departmentServiceClient.getById("dep1"))
                 .thenReturn(ResponseEntity.of(Optional.of(departmentDto)));
 
-        Mockito.when(studentMapper.toStudent(updateStudentRequest)).thenReturn(studentToUpdate);
+        when(studentMapper.toStudent(updateStudentRequest)).thenReturn(studentToUpdate);
 
-        Mockito.when(studentRepository.save(studentToUpdate)).thenReturn(updatedStudent);
-        Mockito.when(studentMapper.toStudentDto(updatedStudent, departmentDto)).thenReturn(studentDto);
+        when(studentRepository.save(studentToUpdate)).thenReturn(updatedStudent);
+        when(studentMapper.toStudentDto(updatedStudent, departmentDto)).thenReturn(studentDto);
 
         StudentDto result = studentManager.update(updateStudentRequest);
 
-        Assertions.assertEquals(result, studentDto);
+        assertEquals(result, studentDto);
 
-        Mockito.verify(studentRepository).existsById(studentToUpdate.getId());
-        Mockito.verify(departmentServiceClient).getById("dep1");
-        Mockito.verify(studentMapper).toStudent(updateStudentRequest);
-        Mockito.verify(studentRepository).save(studentToUpdate);
-        Mockito.verify(studentMapper).toStudentDto(updatedStudent, departmentDto);
+        verify(studentRepository).existsById(studentToUpdate.getId());
+        verify(departmentServiceClient).getById("dep1");
+        verify(studentMapper).toStudent(updateStudentRequest);
+        verify(studentRepository).save(studentToUpdate);
+        verify(studentMapper).toStudentDto(updatedStudent, departmentDto);
 
     }
 
@@ -240,11 +242,11 @@ class StudentManagerTest {
                 .isGraduated(false)
                 .build();
 
-        Mockito.when(studentRepository.existsById(updateStudentRequest.getId())).thenReturn(false);
+        when(studentRepository.existsById(updateStudentRequest.getId())).thenReturn(false);
 
-        Assertions.assertThrows(StudentNotFoundException.class, () -> studentManager.update(updateStudentRequest));
+        assertThrows(StudentNotFoundException.class, () -> studentManager.update(updateStudentRequest));
 
-        Mockito.verify(studentRepository).existsById(updateStudentRequest.getId());
+        verify(studentRepository).existsById(updateStudentRequest.getId());
     }
 
     @Test
@@ -320,21 +322,21 @@ class StudentManagerTest {
         List<Student> studentList = List.of(student1, student2);
         List<StudentDto> studentDtoList = List.of(studentDto1, studentDto2);
 
-        Mockito.when(departmentServiceClient.getById("dep1"))
+        when(departmentServiceClient.getById("dep1"))
                 .thenReturn(ResponseEntity.of(Optional.of(departmentDto)));
 
-        Mockito.when(studentRepository.findAllByDepartmentIdAndGraduatedFalse("dep1")).thenReturn(studentList);
-        Mockito.when(studentMapper.toStudentDto(student1, departmentDto)).thenReturn(studentDto1);
-        Mockito.when(studentMapper.toStudentDto(student2, departmentDto)).thenReturn(studentDto2);
+        when(studentRepository.findAllByDepartmentIdAndGraduatedFalse("dep1")).thenReturn(studentList);
+        when(studentMapper.toStudentDto(student1, departmentDto)).thenReturn(studentDto1);
+        when(studentMapper.toStudentDto(student2, departmentDto)).thenReturn(studentDto2);
 
         List<StudentDto> result = studentManager.getAllByDepartmentId("dep1");
 
-        Assertions.assertEquals(result, studentDtoList);
+        assertEquals(result, studentDtoList);
 
-        Mockito.verify(departmentServiceClient).getById("dep1");
-        Mockito.verify(studentRepository).findAllByDepartmentIdAndGraduatedFalse("dep1");
-        Mockito.verify(studentMapper).toStudentDto(student1, departmentDto);
-        Mockito.verify(studentMapper).toStudentDto(student2, departmentDto);
+        verify(departmentServiceClient).getById("dep1");
+        verify(studentRepository).findAllByDepartmentIdAndGraduatedFalse("dep1");
+        verify(studentMapper).toStudentDto(student1, departmentDto);
+        verify(studentMapper).toStudentDto(student2, departmentDto);
     }
 
     @Test
@@ -380,31 +382,31 @@ class StudentManagerTest {
                 .isGraduated(false)
                 .build();
 
-        Mockito.when(departmentServiceClient.getById("dep1"))
+        when(departmentServiceClient.getById("dep1"))
                 .thenReturn(ResponseEntity.of(Optional.of(departmentDto)));
 
-        Mockito.when(studentRepository.findByIdAndGraduatedFalse("student1")).thenReturn(Optional.of(student));
-        Mockito.when(studentMapper.toStudentDto(student,departmentDto)).thenReturn(studentDto);
+        when(studentRepository.findByIdAndGraduatedFalse("student1")).thenReturn(Optional.of(student));
+        when(studentMapper.toStudentDto(student,departmentDto)).thenReturn(studentDto);
 
         StudentDto result = studentManager.getById("student1");
 
-        Assertions.assertEquals(result,studentDto);
+        assertEquals(result,studentDto);
 
-        Mockito.verify(departmentServiceClient).getById("dep1");
-        Mockito.verify(studentRepository).findByIdAndGraduatedFalse("student1");
-        Mockito.verify(studentMapper).toStudentDto(student,departmentDto);
+        verify(departmentServiceClient).getById("dep1");
+        verify(studentRepository).findByIdAndGraduatedFalse("student1");
+        verify(studentMapper).toStudentDto(student,departmentDto);
     }
     @Test
     public void testGetById_whenStudentIdDoesNotExist_itShouldThrowStudentNotFoundException() {
 
-        Mockito.when(studentRepository.findByIdAndGraduatedFalse("student1"))
+        when(studentRepository.findByIdAndGraduatedFalse("student1"))
                 .thenReturn(Optional.empty());
 
 
-        Assertions.assertThrows(StudentNotFoundException.class,
+        assertThrows(StudentNotFoundException.class,
                 ()->studentManager.getById("student1"));
 
-        Mockito.verifyNoInteractions(departmentServiceClient);
-        Mockito.verifyNoInteractions(studentMapper);
+        verifyNoInteractions(departmentServiceClient);
+        verifyNoInteractions(studentMapper);
     }
 }

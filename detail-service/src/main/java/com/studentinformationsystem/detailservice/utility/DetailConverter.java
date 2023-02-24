@@ -1,13 +1,10 @@
 package com.studentinformationsystem.detailservice.utility;
 
-import com.studentinformationsystem.detailservice.dto.detail.CreateDetailRequest;
+import com.studentinformationsystem.detailservice.dto.detail.CreateDefaultDetailRequest;
 import com.studentinformationsystem.detailservice.dto.detail.DetailDto;
 import com.studentinformationsystem.detailservice.dto.detail.UpdateDetailRequest;
-import com.studentinformationsystem.detailservice.model.Detail;
+import com.studentinformationsystem.detailservice.model.*;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class DetailConverter implements DetailMapper {
@@ -26,17 +23,26 @@ public class DetailConverter implements DetailMapper {
     }
 
     @Override
-    public List<DetailDto> toDetailDtoList(List<Detail> from) {
-        return from.stream()
-                .map(detail -> toDetailDto(detail))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public Detail toDetail(CreateDetailRequest request) {
+    public Detail toDefaultDetail(CreateDefaultDetailRequest request) {
         return Detail.builder()
-                .homeAddress(addressMapper.toAddress(request.getHomeAddress()))
-                .workAddress(addressMapper.toAddress(request.getWorkAddress()))
+                .homeAddress(Address.builder()
+                        .addressType(AddressType.HOME)
+                        .city(City.builder()
+                                .id(request.getCityId())
+                                .build())
+                        .district(District.builder()
+                                .id(request.getDistrictId())
+                                .build())
+                        .build())
+                .workAddress(Address.builder()
+                        .addressType(AddressType.WORK)
+                        .city(City.builder()
+                                .id(request.getCityId())
+                                .build())
+                        .district(District.builder()
+                                .id(request.getDistrictId())
+                                .build())
+                        .build())
                 .build();
     }
 

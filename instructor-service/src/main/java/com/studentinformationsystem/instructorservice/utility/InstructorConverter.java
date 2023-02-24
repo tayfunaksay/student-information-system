@@ -1,18 +1,16 @@
 package com.studentinformationsystem.instructorservice.utility;
 
+import com.studentinformationsystem.instructorservice.dto.clientDto.DepartmentDto;
 import com.studentinformationsystem.instructorservice.dto.instructor.CreateInstructorRequest;
 import com.studentinformationsystem.instructorservice.dto.instructor.InstructorDto;
 import com.studentinformationsystem.instructorservice.dto.instructor.UpdateInstructorRequest;
 import com.studentinformationsystem.instructorservice.model.Instructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Component
 public class InstructorConverter implements InstructorMapper {
     @Override
-    public InstructorDto toInstructorDto(Instructor from) {
+    public InstructorDto toInstructorDto(Instructor from, DepartmentDto departmentDto) {
         return InstructorDto.builder()
                 .id(from.getId())
                 .firstName(from.getFirstName())
@@ -20,17 +18,9 @@ public class InstructorConverter implements InstructorMapper {
                 .educationalEmail(from.getEducationalEmail())
                 .nationalIdentity(from.getNationalIdentity())
                 .gender(from.getGender())
-                .departmentId(from.getDepartmentId())
+                .departmentName(departmentDto.getName())
                 .detailId(from.getDetailId())
-                .isAvailable(from.isAvailable())
                 .build();
-    }
-
-    @Override
-    public List<InstructorDto> toInstructorDtoList(List<Instructor> from) {
-        return from.stream()
-                .map(instructor -> toInstructorDto(instructor))
-                .collect(Collectors.toList());
     }
 
     @Override
@@ -43,7 +33,6 @@ public class InstructorConverter implements InstructorMapper {
                 .gender(request.getGender())
                 .departmentId(request.getDepartmentId())
                 .detailId(detailId)
-                .isAvailable(request.isAvailable())
                 .build();
     }
 
@@ -55,9 +44,7 @@ public class InstructorConverter implements InstructorMapper {
                 .lastName(request.getLastName())
                 .nationalIdentity(request.getNationalIdentity())
                 .gender(request.getGender())
-                .educationalEmail(request.getEducationalEmail())
                 .departmentId(request.getDepartmentId())
-                .isAvailable(request.isAvailable())
                 .build();
     }
 }

@@ -13,7 +13,7 @@ public interface InstructorService {
 
     InstructorDto update(UpdateInstructorRequest request);
 
-    List<InstructorDto> getAll();
+    List<InstructorDto> getAllByDepartmentId(String departmentId);
 
     InstructorDto getById(String instructorId);
 }

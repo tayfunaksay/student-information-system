@@ -35,8 +35,8 @@ public class InstructorController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<InstructorDto>> getAll(){
-        return ResponseEntity.ok(instructorService.getAll());
+    public ResponseEntity<List<InstructorDto>> getAllByDepartmentId(@PathVariable String departmentId){
+        return ResponseEntity.ok(instructorService.getAllByDepartmentId(departmentId));
     }
 
     @GetMapping("/{instructorId}")

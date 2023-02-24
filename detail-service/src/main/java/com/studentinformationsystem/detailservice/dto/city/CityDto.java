@@ -6,7 +6,6 @@ import java.util.Objects;
 
 @Builder
 public class CityDto {
-
     private String id;
     private String name;
     private String plateNumber;

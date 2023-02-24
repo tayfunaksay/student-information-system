@@ -15,17 +15,12 @@ public class City {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "city")
     private List<District> districts;
-
     @OneToMany(mappedBy = "city")
     private List<Address> addresses;
-
     private String name;
-
     private String plateNumber;
-
 
     public City() {
     }

@@ -29,9 +29,9 @@ public class DistrictController {
         return ResponseEntity.ok(districtService.update(request));
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<List<DistrictDto>> getAll() {
-        return ResponseEntity.ok(districtService.getAll());
+    @GetMapping("/getAllByCityId")
+    public ResponseEntity<List<DistrictDto>> getAllByCityId(@PathVariable String cityId) {
+        return ResponseEntity.ok(districtService.getAllByCityId(cityId));
     }
 
     @GetMapping("/{districtId}")

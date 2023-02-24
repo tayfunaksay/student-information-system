@@ -10,7 +10,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "details")
 public class Detail {
-
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
@@ -23,9 +22,6 @@ public class Detail {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "work_address_id")
     private Address workAddress;
-
-
-
 
     public Detail() {
     }

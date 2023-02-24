@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient(name = "detail-service",path = "/v1/detail")
 public interface DetailServiceClient {
     @PostMapping("/add")
-    ResponseEntity<String> createDefaultDetail();
+    ResponseEntity<String> createDefaultDetail(CreateDefaultDetailRequest request);
 }

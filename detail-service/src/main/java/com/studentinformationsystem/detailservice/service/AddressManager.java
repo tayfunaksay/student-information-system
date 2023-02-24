@@ -8,8 +8,6 @@ import com.studentinformationsystem.detailservice.repository.AddressRepository;
 import com.studentinformationsystem.detailservice.utility.AddressMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class AddressManager implements AddressService {
     private final AddressRepository addressRepository;
@@ -32,16 +30,5 @@ public class AddressManager implements AddressService {
         } else {
             throw new AddressNotFoundException("Address could not found by id: " + request.getId());
         }
-    }
-
-    @Override
-    public List<AddressDto> getAll() {
-        return addressMapper.toAddressDtoList(addressRepository.findAll());
-    }
-
-    @Override
-    public AddressDto getById(String addressId) {
-        return addressMapper.toAddressDto(addressRepository.findById(addressId)
-                .orElseThrow(() -> new AddressNotFoundException("Address could not found by id: " + addressId)));
     }
 }

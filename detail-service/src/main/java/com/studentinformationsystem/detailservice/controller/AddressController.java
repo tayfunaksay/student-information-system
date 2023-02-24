@@ -26,15 +26,4 @@ public class AddressController {
     public ResponseEntity<AddressDto> update(@RequestBody UpdateAddressRequest request) {
         return ResponseEntity.ok(addressService.update(request));
     }
-
-    @GetMapping("/getAll")
-    public ResponseEntity<List<AddressDto>> getAll() {
-        return ResponseEntity.ok(addressService.getAll());
-
-    }
-    @GetMapping("/{addressId}")
-    public ResponseEntity<AddressDto> getById(@PathVariable String addressId) {
-        return ResponseEntity.ok(addressService.getById(addressId));
-    }
-
 }

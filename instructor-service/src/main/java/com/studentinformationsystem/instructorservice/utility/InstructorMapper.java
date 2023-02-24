@@ -1,18 +1,15 @@
 package com.studentinformationsystem.instructorservice.utility;
 
+import com.studentinformationsystem.instructorservice.dto.clientDto.DepartmentDto;
 import com.studentinformationsystem.instructorservice.dto.instructor.CreateInstructorRequest;
 import com.studentinformationsystem.instructorservice.dto.instructor.InstructorDto;
 import com.studentinformationsystem.instructorservice.dto.instructor.UpdateInstructorRequest;
 import com.studentinformationsystem.instructorservice.model.Instructor;
 
-import java.util.List;
-
 public interface InstructorMapper {
-    InstructorDto toInstructorDto(Instructor from);
+    InstructorDto toInstructorDto(Instructor from, DepartmentDto departmentDto);
 
-    List<InstructorDto> toInstructorDtoList(List<Instructor> from);
-
-    Instructor toInstructor(CreateInstructorRequest request,String departmentId,String educationalEmail);
+    Instructor toInstructor(CreateInstructorRequest request,String detailId,String educationalEmail);
 
     Instructor toInstructor(UpdateInstructorRequest request);
 }

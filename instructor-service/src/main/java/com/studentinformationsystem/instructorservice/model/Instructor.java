@@ -24,33 +24,23 @@ public class Instructor {
     private String gender;
     private String departmentId;
     private String detailId;
-    private boolean isAvailable;
 
     public Instructor() {
     }
 
-    public Instructor(String id, String departmentId, String detailId, String firstName, String lastName, String nationalIdentity, String gender, String educationalEmail, boolean isAvailable) {
+    public Instructor(String id, String firstName, String lastName, String educationalEmail, String nationalIdentity, String gender, String departmentId, String detailId) {
         this.id = id;
-        this.departmentId = departmentId;
-        this.detailId = detailId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.educationalEmail = educationalEmail;
         this.nationalIdentity = nationalIdentity;
         this.gender = gender;
-        this.educationalEmail = educationalEmail;
-        this.isAvailable = isAvailable;
+        this.departmentId = departmentId;
+        this.detailId = detailId;
     }
 
     public String getId() {
         return id;
-    }
-
-    public String getDepartmentId() {
-        return departmentId;
-    }
-
-    public String getDetailId() {
-        return detailId;
     }
 
     public String getFirstName() {
@@ -61,6 +51,10 @@ public class Instructor {
         return lastName;
     }
 
+    public String getEducationalEmail() {
+        return educationalEmail;
+    }
+
     public String getNationalIdentity() {
         return nationalIdentity;
     }
@@ -69,12 +63,12 @@ public class Instructor {
         return gender;
     }
 
-    public String getEducationalEmail() {
-        return educationalEmail;
+    public String getDepartmentId() {
+        return departmentId;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public String getDetailId() {
+        return detailId;
     }
 
     @Override
@@ -82,26 +76,25 @@ public class Instructor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Instructor that = (Instructor) o;
-        return isAvailable == that.isAvailable && Objects.equals(id, that.id) && Objects.equals(departmentId, that.departmentId) && Objects.equals(detailId, that.detailId) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(nationalIdentity, that.nationalIdentity) && Objects.equals(gender, that.gender) && Objects.equals(educationalEmail, that.educationalEmail);
+        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(educationalEmail, that.educationalEmail) && Objects.equals(nationalIdentity, that.nationalIdentity) && Objects.equals(gender, that.gender) && Objects.equals(departmentId, that.departmentId) && Objects.equals(detailId, that.detailId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, departmentId, detailId, firstName, lastName, nationalIdentity, gender, educationalEmail, isAvailable);
+        return Objects.hash(id, firstName, lastName, educationalEmail, nationalIdentity, gender, departmentId, detailId);
     }
 
     @Override
     public String toString() {
         return "Instructor{" +
                 "id='" + id + '\'' +
-                ", departmentId='" + departmentId + '\'' +
-                ", detailId='" + detailId + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", educationalEmail='" + educationalEmail + '\'' +
                 ", nationalIdentity='" + nationalIdentity + '\'' +
                 ", gender='" + gender + '\'' +
-                ", educationalEmail='" + educationalEmail + '\'' +
-                ", isAvailable=" + isAvailable +
+                ", departmentId='" + departmentId + '\'' +
+                ", detailId='" + detailId + '\'' +
                 '}';
     }
 }

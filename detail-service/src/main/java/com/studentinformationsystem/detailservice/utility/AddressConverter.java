@@ -27,8 +27,8 @@ public class AddressConverter implements AddressMapper {
                 .id(from.getId())
                 .cityDto(cityMapper.toCityDto(from.getCity()))
                 .districtDto(districtMapper.toDistrictDto(from.getDistrict()))
-                .postCode(from.getPostCode())
                 .street(from.getStreet())
+                .addressType(from.getAddressType())
                 .build();
     }
 
@@ -44,7 +44,6 @@ public class AddressConverter implements AddressMapper {
         return Address.builder()
                 .district(District.builder().id(request.getDistrictId()).build())
                 .city(City.builder().id(request.getCityId()).build())
-                .postCode(request.getPostCode())
                 .street(request.getStreet())
                 .addressType(request.getAddressType())
                 .build();
@@ -56,7 +55,6 @@ public class AddressConverter implements AddressMapper {
                 .id(request.getId())
                 .district(District.builder().id(request.getDistrictId()).build())
                 .city(City.builder().id(request.getCityId()).build())
-                .postCode(request.getPostCode())
                 .street(request.getStreet())
                 .addressType(request.getAddressType())
                 .build();

@@ -17,6 +17,7 @@ public class DistrictConverter implements DistrictMapper {
         return DistrictDto.builder()
                 .id(from.getId())
                 .name(from.getName())
+                .cityName(from.getCity().getName())
                 .build();
     }
 
@@ -38,7 +39,11 @@ public class DistrictConverter implements DistrictMapper {
     @Override
     public District toDistrict(UpdateDistrictRequest request) {
         return District.builder()
+                .id(request.getId())
                 .name(request.getName())
+                .city(City.builder()
+                        .id(request.getCityId())
+                        .build())
                 .build();
     }
 }

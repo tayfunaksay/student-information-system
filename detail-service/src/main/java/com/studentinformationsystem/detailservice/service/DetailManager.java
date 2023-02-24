@@ -1,14 +1,12 @@
 package com.studentinformationsystem.detailservice.service;
 
+import com.studentinformationsystem.detailservice.dto.detail.CreateDefaultDetailRequest;
 import com.studentinformationsystem.detailservice.dto.detail.DetailDto;
 import com.studentinformationsystem.detailservice.dto.detail.UpdateDetailRequest;
 import com.studentinformationsystem.detailservice.exception.DetailNotFoundException;
-import com.studentinformationsystem.detailservice.model.*;
 import com.studentinformationsystem.detailservice.repository.DetailRepository;
 import com.studentinformationsystem.detailservice.utility.DetailMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class DetailManager implements DetailService {
@@ -21,13 +19,9 @@ public class DetailManager implements DetailService {
     }
 
     @Override
-    public String createDefaultDetail() {
-        Detail defaultDetail = Detail.builder()
-                .homeAddress(Address.builder().addressType(AddressType.HOME).city(City.builder().id("b1ed3a63-afad-4856-8ded-2b90819cd5c5").build()).district(District.builder().id("c299b97a-b197-4b08-8d9a-c069dd1d8e8b").build()).build())
-                .workAddress(Address.builder().addressType(AddressType.WORK).city(City.builder().id("b1ed3a63-afad-4856-8ded-2b90819cd5c5").build()).district(District.builder().id("c299b97a-b197-4b08-8d9a-c069dd1d8e8b").build()).build())
-                .build();
-        Detail createdDetail =(detailRepository.save(defaultDetail));
-        return createdDetail.getId();
+    public String createDefaultDetail(CreateDefaultDetailRequest request) {
+
+        return detailMapper.toDetailDto(detailRepository.save(detailMapper.toDefaultDetail(request))).getId();
     }
 
     @Override
@@ -37,11 +31,6 @@ public class DetailManager implements DetailService {
         }else {
             throw new DetailNotFoundException("Detail could not found by id: "+ request.getId());
         }
-    }
-
-    @Override
-    public List<DetailDto> getAll() {
-        return detailMapper.toDetailDtoList(detailRepository.findAll());
     }
 
     @Override
