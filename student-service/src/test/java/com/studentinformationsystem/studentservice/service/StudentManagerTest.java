@@ -7,6 +7,7 @@ import com.studentinformationsystem.studentservice.dto.clientDto.FacultyDto;
 import com.studentinformationsystem.studentservice.dto.student.CreateStudentRequest;
 import com.studentinformationsystem.studentservice.dto.student.StudentDto;
 import com.studentinformationsystem.studentservice.dto.student.UpdateStudentRequest;
+import com.studentinformationsystem.studentservice.exception.BusinessRulesException;
 import com.studentinformationsystem.studentservice.exception.StudentNotFoundException;
 import com.studentinformationsystem.studentservice.model.ClassLevel;
 import com.studentinformationsystem.studentservice.model.Student;
@@ -28,6 +29,7 @@ class StudentManagerTest {
     private StudentManager studentManager;
     private StudentRepository studentRepository;
     private StudentMapper studentMapper;
+    private StudentBusinessRules businessRules;
     private DetailServiceClient detailServiceClient;
     private DepartmentServiceClient departmentServiceClient;
 
@@ -36,10 +38,11 @@ class StudentManagerTest {
     void setUp() {
         studentRepository = mock(StudentRepository.class);
         studentMapper = mock(StudentMapper.class);
+        businessRules = mock(StudentBusinessRules.class);
         detailServiceClient = mock(DetailServiceClient.class);
         departmentServiceClient = mock(DepartmentServiceClient.class);
 
-        studentManager = new StudentManager(studentRepository, studentMapper, detailServiceClient, departmentServiceClient);
+        studentManager = new StudentManager(studentRepository, studentMapper, businessRules, detailServiceClient, departmentServiceClient);
     }
 
     @Test
@@ -124,6 +127,35 @@ class StudentManagerTest {
         StudentDto result = studentManager.create(createStudentRequest);
 
         assertEquals(result, studentDto);
+
+        verify(departmentServiceClient).getById("dep1");
+        verify(detailServiceClient).createDefaultDetail();
+        verify(studentMapper).toStudent(createStudentRequest,
+                detailId,
+                EducationalMailGenerator
+                        .generate(createStudentRequest.getFirstName(), createStudentRequest.getLastName()));
+        verify(studentRepository).save(studentToSave);
+        verify(studentMapper).toStudentDto(savedStudent, departmentDto);
+
+    }
+    @Test
+    public void testCreate_whenStudentNumberAlreadyExist_itShouldThrowBusinessRulesException() {
+
+        CreateStudentRequest createStudentRequest = CreateStudentRequest.builder()
+                .firstName("Tayfun")
+                .lastName("Aksay")
+                .studentNumber("2013503004")
+                .emailAddress("tayfun.aksay@gmail.com")
+                .departmentId("dep1")
+                .nationalIdentity("11111111111")
+                .gender("E")
+                .build();
+
+        when(studentRepository.existsByStudentNumber(createStudentRequest.getStudentNumber())).thenReturn(true);
+
+        assertThrows(BusinessRulesException.class,
+                () ->businessRules.checkIfStudentNumberExists(createStudentRequest.getStudentNumber()));
+
 
         verify(departmentServiceClient).getById("dep1");
         verify(detailServiceClient).createDefaultDetail();

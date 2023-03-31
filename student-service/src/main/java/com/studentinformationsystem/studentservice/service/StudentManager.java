@@ -20,14 +20,16 @@ import java.util.stream.Collectors;
 public class StudentManager implements StudentService {
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
+    private final StudentBusinessRules businessRules;
     private final DetailServiceClient detailServiceClient;
     private final DepartmentServiceClient departmentServiceClient;
 
     DepartmentDto departmentDto;
 
-    public StudentManager(StudentRepository studentRepository, StudentMapper studentMapper, DetailServiceClient detailServiceClient, DepartmentServiceClient departmentServiceClient) {
+    public StudentManager(StudentRepository studentRepository, StudentMapper studentMapper, StudentBusinessRules businessRules, DetailServiceClient detailServiceClient, DepartmentServiceClient departmentServiceClient) {
         this.studentRepository = studentRepository;
         this.studentMapper = studentMapper;
+        this.businessRules = businessRules;
         this.detailServiceClient = detailServiceClient;
         this.departmentServiceClient = departmentServiceClient;
     }
@@ -38,6 +40,11 @@ public class StudentManager implements StudentService {
 
     @Override
     public StudentDto create(CreateStudentRequest request) {
+
+        businessRules.checkIfStudentNumberExists(request.getStudentNumber());
+        businessRules.checkIfEmailAddressExists(request.getEmailAddress());
+        businessRules.checkIfNationalIdentityExists(request.getNationalIdentity());
+
         departmentDto= departmentServiceClient.getById(request.getDepartmentId()).getBody();
 
         return studentMapper.toStudentDto(studentRepository
@@ -55,7 +62,9 @@ public class StudentManager implements StudentService {
     public StudentDto update(UpdateStudentRequest request) {
         if (studentRepository.existsById(request.getId())) {
             departmentDto= departmentServiceClient.getById(request.getDepartmentId()).getBody();
-            return studentMapper.toStudentDto(studentRepository.save(studentMapper.toStudent(request)),departmentDto);
+            return studentMapper.toStudentDto(studentRepository
+                    .save(studentMapper.toStudent(request)),departmentDto);
+            //TODO: İş kurallarına aykırı bir güncelleme yapılmasını engelleyecek yapı kurulmalı.
         } else {
             throw new StudentNotFoundException("Student could not found by id: " + request.getId());
         }

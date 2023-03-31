@@ -14,4 +14,10 @@ public interface StudentRepository extends JpaRepository<Student, String> {
     List<Student> findAllByDepartmentIdAndGraduatedFalse(String departmentId);
     @Query("select s from Student s where s.id = ?1 and s.isGraduated = false")
     Optional<Student> findByIdAndGraduatedFalse(String studentId);
+
+    boolean existsByStudentNumber (String studentNumber);
+
+    boolean existsByNationalIdentity (String nationalIdentity);
+
+    boolean existsByEmailAddress (String emailAddress);
 }

@@ -46,4 +46,8 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exception.getExceptionMessage(), HttpStatus.resolve(exception.getExceptionMessage().status()));
     }
 
+    @ExceptionHandler(BusinessRulesException.class)
+    public ResponseEntity<?> businessRulesExceptionHandler(BusinessRulesException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }
